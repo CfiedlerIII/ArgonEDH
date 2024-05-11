@@ -41,8 +41,5 @@ struct LimitRotationTo: ViewModifier {
           UIDevice.current.setValue(orientation.rawValue, forKey: "orientation")
           AppDelegate.orientationLock = orientation
         }
-        .onDisappear {
-          AppDelegate.orientationLock = .all
-        }
     }
 }

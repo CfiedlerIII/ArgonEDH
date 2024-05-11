@@ -42,7 +42,6 @@ struct ArgonApp: App {
     var body: some Scene {
         WindowGroup {
           Navigator()
-//          ContentView()
         }
     }
 }
