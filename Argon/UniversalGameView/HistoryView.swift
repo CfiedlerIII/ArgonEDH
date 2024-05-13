@@ -35,48 +35,28 @@ struct HistoryView: View {
 
   var body: some View {
     GeometryReader { geometry in
-      ZStack {
-        VStack {
-          Text("History")
-            .font(.system(size: 28))
-            .padding()
-          Spacer()
-        }
-        VStack {
-          HStack {
-            Button(action: {
-              isDisplayed = false
-            }, label: {
-              Image(systemName: "xmark")
-                .resizable()
-                .frame(width: 28, height: 28, alignment: .center)
-            })
-            .padding()
-            .tint(.black)
-            Spacer()
-          }
+      VStack {
+        Text("Most Recent")
+          .font(.system(size: 20))
+        ScrollView {
           Divider()
-          Text("Most Recent")
-            .font(.system(size: 20))
-          ScrollView {
-            Divider()
-            ForEach(history.deltas.reversed()) { delta in
-              if delta.change > 0 {
-                Text("+\(delta.change)")
-                  .font(.system(size: 30))
-              } else {
-                Text("\(delta.change)")
-                  .font(.system(size: 30))
-              }
-              Divider()
+          ForEach(history.deltas.reversed()) { delta in
+            if delta.change > 0 {
+              Text("+\(delta.change)")
+                .font(.system(size: 30))
+            } else {
+              Text("\(delta.change)")
+                .font(.system(size: 30))
             }
+            Divider()
           }
-          .padding(.leading, 10)
-          Text("Oldest")
-            .font(.system(size: 20))
-          Spacer()
         }
+        .padding(.leading, 10)
+        Text("Oldest")
+          .font(.system(size: 20))
+        Spacer()
       }
+      .modifier(ModalCloseWrapper(title: "History", isDisplayed: $isDisplayed))
     }
   }
 }

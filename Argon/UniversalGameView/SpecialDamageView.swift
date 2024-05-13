@@ -12,30 +12,8 @@ struct SpecialDamageView: View {
 
   var body: some View {
     GeometryReader { geometry in
-      ZStack {
-        VStack {
-          Text("Special Damage")
-            .font(.system(size: 28))
-            .padding()
-          Spacer()
-        }
-        VStack {
-          HStack {
-            Button(action: {
-              isDisplayed = false
-            }, label: {
-              Image(systemName: "xmark")
-                .resizable()
-                .frame(width: 28, height: 28, alignment: .center)
-            })
-            .padding()
-            .tint(.black)
-            Spacer()
-          }
-          Divider()
-          Spacer()
-        }
-      }
+      Text("View Body")
+        .modifier(ModalCloseWrapper(title: "Special Damage", isDisplayed: $isDisplayed))
     }
   }
 }
