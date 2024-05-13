@@ -9,10 +9,10 @@ import SwiftUI
 
 struct LifeTrackerView: View {
 
+  var backgroundColor: Color = .blue
   @Binding var count: Int
   @Binding var lifeDelta: Int
-  var backgroundColor: Color = .blue
-
+  @Binding var history: History
   @State var deltaTimer: Timer? = nil
   @State var holdTimer: Timer? = nil
   @State var isLongPressing: Bool = false
@@ -23,7 +23,6 @@ struct LifeTrackerView: View {
         Spacer()
         Button(action: {
           if(isLongPressing){
-            //this tap was caused by the end of a longpress gesture, so stop our fastforwarding
             isLongPressing.toggle()
             holdTimer?.invalidate()
           } else {
@@ -53,11 +52,10 @@ struct LifeTrackerView: View {
           }
         )
 
-        TrackerView(count: $count, trackerType: .life, backgroundColor: backgroundColor)
+        TrackerView(trackerType: .life, backgroundColor: backgroundColor, count: $count)
 
         Button(action: {
           if(isLongPressing){
-            //this tap was caused by the end of a longpress gesture, so stop our fastforwarding
             isLongPressing.toggle()
             holdTimer?.invalidate()
           } else {
@@ -96,8 +94,8 @@ struct LifeTrackerView: View {
     deltaTimer?.invalidate()
     deltaTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true, block: { _ in
       if lifeDelta != 0 {
-//        let newDelta = History.Delta(lifeDelta)
-//        history.deltas.append(newDelta)
+        let newDelta = History.Delta(lifeDelta)
+        history.deltas.append(newDelta)
       }
       lifeDelta = 0
     })
@@ -108,9 +106,10 @@ struct LifeTrackerView: View {
 struct LifeTrackerView_Previews: PreviewProvider {
   @State static var count = 22
   @State static var delta = 2
+  @State static var history = History()
 
   static var previews: some View {
-    LifeTrackerView(count: $count, lifeDelta: $delta)
+    LifeTrackerView(count: $count, lifeDelta: $delta, history: $history)
   }
 }
 

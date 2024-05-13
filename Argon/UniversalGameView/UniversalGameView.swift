@@ -40,26 +40,25 @@ struct UniversalGameView: View {
         switch gameMode {
         case .twoPlayer:
           VStack {
-            PlayerView(count: 20, backgroundColor: .green, rotation: .degrees(180.0))
-            PlayerView(count: 20, backgroundColor: .blue)
+            PlayerView(backgroundColor: .green, rotation: .degrees(180.0), count: 20)
+            PlayerView(backgroundColor: .blue, rotation: .zero, count: 20)
           }
         case .twoPlayerSideways:
           HStack {
-            PlayerView(count: 20, backgroundColor: .green, rotation: .degrees(180.0))
-            PlayerView(count: 20, backgroundColor: .blue)
+            PlayerView(backgroundColor: .green, rotation: .degrees(180.0), count: 20)
+            PlayerView(backgroundColor: .blue, rotation: .zero, count: 20)
           }
 
         case .threeTPlayer:
           HStack {
             Spacer()
-            PlayerView(count: 20, backgroundColor: .green)
-              .modifier(RotatedView(angle: .degrees(90.0)))
+            PlayerView(backgroundColor: .green, rotation: .degrees(90.0), count: 20)
               .frame(width: geom.size.height * 0.5, height: geom.size.width * 0.5)
             Spacer()
             VStack {
-              PlayerView(count: 20, backgroundColor: .blue, rotation: .degrees(180))
+              PlayerView(backgroundColor: .blue, rotation: .degrees(180), count: 20)
                 .frame(width: geom.size.width * 0.5, height: geom.size.height * 0.5)
-              PlayerView(count: 20, backgroundColor: .yellow)
+              PlayerView(backgroundColor: .yellow, rotation: .zero, count: 20)
                 .frame(width: geom.size.width * 0.5, height: geom.size.height * 0.5)
             }
             Spacer()
@@ -69,15 +68,15 @@ struct UniversalGameView: View {
           HStack {
             Spacer()
             VStack {
-              PlayerView(count: 20, backgroundColor: .green, rotation: .degrees(180))
-                .frame(width: geom.size.width * 0.5, height: geom.size.height * 0.5)
-              PlayerView(count: 20, backgroundColor: .blue)
-                .frame(width: geom.size.width * 0.5, height: geom.size.height * 0.5)
+              PlayerView(backgroundColor: .green, rotation: .degrees(180), count: 20)
+                .frame(maxWidth: geom.size.width * 0.5, maxHeight: geom.size.height * 0.5)
+              PlayerView(backgroundColor: .blue, rotation: .zero, count: 20)
+                .frame(maxWidth: geom.size.width * 0.5, maxHeight: geom.size.height * 0.5)
             }
             Spacer()
             VStack {
-              PlayerView(count: 20, backgroundColor: .yellow, rotation: .degrees(180))
-                .frame(width: geom.size.width * 0.5, height: geom.size.height * 0.5)
+              PlayerView(backgroundColor: .yellow, rotation: .degrees(180), count: 20)
+                .frame(maxWidth: geom.size.width * 0.5, maxHeight: geom.size.height * 0.5)
               Color.black
             }
             Spacer()
@@ -87,17 +86,17 @@ struct UniversalGameView: View {
           HStack {
             Spacer()
             VStack {
-              PlayerView(count: 20, backgroundColor: .green, rotation: .degrees(180))
-                .frame(width: geom.size.width * 0.5, height: geom.size.height * 0.5)
-              PlayerView(count: 20, backgroundColor: .blue)
-                .frame(width: geom.size.width * 0.5, height: geom.size.height * 0.5)
+              PlayerView(backgroundColor: .green, rotation: .degrees(180), count: 20)
+                .frame(maxWidth: geom.size.width * 0.5, maxHeight: geom.size.height * 0.5)
+              PlayerView(backgroundColor: .blue, rotation: .degrees(0.0), count: 20)
+                .frame(maxWidth: geom.size.width * 0.5, maxHeight: geom.size.height * 0.5)
             }
             Spacer()
             VStack {
-              PlayerView(count: 20, backgroundColor: .yellow, rotation: .degrees(180))
-                .frame(width: geom.size.width * 0.5, height: geom.size.height * 0.5)
-              PlayerView(count: 20, backgroundColor: .red)
-                .frame(width: geom.size.width * 0.5, height: geom.size.height * 0.5)
+              PlayerView(backgroundColor: .yellow, rotation: .degrees(180), count: 20)
+                .frame(maxWidth: geom.size.width * 0.5, maxHeight: geom.size.height * 0.5)
+              PlayerView(backgroundColor: .red, rotation: .zero, count: 20)
+                .frame(maxWidth: geom.size.width * 0.5, maxHeight: geom.size.height * 0.5)
             }
             Spacer()
           }
@@ -105,18 +104,16 @@ struct UniversalGameView: View {
         case .fourPlus:
           HStack {
             Spacer()
-            PlayerView(count: 20, backgroundColor: .green)
-              .modifier(RotatedView(angle: .degrees(90.0)))
+            PlayerView(backgroundColor: .green, rotation: .degrees(90.0), count: 20)
             Spacer()
             VStack {
-              PlayerView(count: 20, backgroundColor: .blue, rotation: .degrees(180))
+              PlayerView(backgroundColor: .blue, rotation: .degrees(180), count: 20)
                 .frame(width: geom.size.width * 0.49, height: geom.size.height * 0.49)
-              PlayerView(count: 20, backgroundColor: .yellow)
+              PlayerView(backgroundColor: .yellow, rotation: .zero, count: 20)
                 .frame(width: geom.size.width * 0.49, height: geom.size.height * 0.49)
             }
             Spacer()
-            PlayerView(count: 20, backgroundColor: .red)
-              .modifier(RotatedView(angle: .degrees(270.0)))
+            PlayerView(backgroundColor: .red, rotation: .degrees(270.0), count: 20)
             Spacer()
           }
           .frame(width: geom.size.width, height: geom.size.height)
@@ -132,6 +129,6 @@ struct UniversalGameView: View {
 
 struct UniversalGameView_Previews: PreviewProvider {
   static var previews: some View {
-    UniversalGameView(navigator: Navigator(), gameMode: .threeLPlayer)
+    UniversalGameView(navigator: Navigator(), gameMode: .threeTPlayer)
   }
 }

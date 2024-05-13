@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct PlayerSettingsView: View {
+
   var backgroundColor: Color
+  var rotation: Angle
+  @Binding var isShowingHistory: Bool
+  @Binding var isShowingCMDR: Bool
+  @Binding var history: History
 
   var body: some View {
     GeometryReader { geometry in
@@ -16,6 +21,7 @@ struct PlayerSettingsView: View {
         Spacer()
         Button(action: {
           print("Special Damage Pressed")
+          isShowingCMDR = true
         }, label: {
           Image(systemName: "checkerboard.shield")
             .resizable()
@@ -23,14 +29,24 @@ struct PlayerSettingsView: View {
             .scaledToFit()
             .getContrastColor(backgroundColor: backgroundColor)
         })
+        .sheet(isPresented: $isShowingCMDR, content: {
+          SpecialDamageView(isDisplayed: $isShowingCMDR)
+            .modifier(RotatedView(angle: rotation))
+        })
+
         Button(action: {
-            print("Life History Pressed")
+          print("Life History Pressed")
+          isShowingHistory = true
         }, label: {
           Image(systemName: "menucard")
             .resizable()
             .font(.system(size: 500).weight(.ultraLight))
             .scaledToFit()
             .getContrastColor(backgroundColor: backgroundColor)
+        })
+        .sheet(isPresented: $isShowingHistory, content: {
+          HistoryView(history: history, isDisplayed: $isShowingHistory)
+            .modifier(RotatedView(angle: rotation))
         })
         Spacer()
       }
@@ -41,7 +57,16 @@ struct PlayerSettingsView: View {
 }
 
 struct PlayerSettingsView_Previews: PreviewProvider {
+  @State static var isShowingStuff = false
+  @State static var history = History()
+
   static var previews: some View {
-    PlayerSettingsView(backgroundColor: .blue)
+    PlayerSettingsView(
+      backgroundColor: .blue,
+      rotation: .zero,
+      isShowingHistory: $isShowingStuff,
+      isShowingCMDR: $isShowingStuff,
+      history: $history
+    )
   }
 }

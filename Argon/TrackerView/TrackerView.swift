@@ -24,9 +24,9 @@ enum TrackerType {
 
 struct TrackerView: View {
 
-  @Binding var count: Int
   var trackerType: TrackerType
-  var backgroundColor: Color = .black
+  var backgroundColor: Color
+  @Binding var count: Int
 
   var body: some View {
     GeometryReader { geom in
@@ -61,7 +61,7 @@ struct TrackerView_Previews: PreviewProvider {
   @State static var count = 8
 
   static var previews: some View {
-    TrackerView(count: $count, trackerType: .life)
+    TrackerView(trackerType: .life, backgroundColor: .black, count: $count)
   }
 }
 
