@@ -14,7 +14,7 @@ struct RotatedView: ViewModifier {
     GeometryReader { geom in
       VStack {
         content
-          .frame(width: geom.size.height, height: geom.size.width)
+          .frame(width: angle.degrees == 90.0 || angle.degrees == 270.0 ? geom.size.height : geom.size.width, height: angle.degrees == 90.0 || angle.degrees == 270.0 ? geom.size.width : geom.size.height)
           .rotationEffect(angle)
       }
       .frame(width: geom.size.width, height: geom.size.height)
