@@ -71,8 +71,9 @@ class PlayerModel: ObservableObject, Identifiable {
 
 class NewMatchModel: ObservableObject {
   @Published var playerModels: [PlayerModel]
-  var hasCommanderDamage: Bool
   var gameMode: GameMode
+  var startingLife: Int = 20
+  var hasCommanderDamage: Bool
 
   init(playerModels: [PlayerModel], hasCommanderDamage: Bool, gameMode: GameMode) {
     self.playerModels = playerModels
@@ -80,15 +81,24 @@ class NewMatchModel: ObservableObject {
     self.gameMode = gameMode
   }
 
-  init(startinglife: Int = 40, hasCommanderDamage: Bool = true, gameMode: GameMode) {
-    self.hasCommanderDamage = hasCommanderDamage
+  init(startingLife: Int = 40, hasCommanderDamage: Bool = true, gameMode: GameMode) {
     self.gameMode = gameMode
+    self.startingLife = startingLife
+    self.hasCommanderDamage = hasCommanderDamage
+    self.playerModels = NewMatchModel.setupMatch(gameMode: gameMode, startingLife: startingLife)
+  }
+
+  class func setupMatch(gameMode: GameMode, startingLife: Int) -> [PlayerModel] {
     var tempPlayerModels: [PlayerModel] = []
     // Generate all player models
     for index in 0..<gameMode.numOfPlayers() {
-      let newPlayerModel = PlayerModel(index: index, life: startinglife, numOfPlayers: gameMode.numOfPlayers())
+      let newPlayerModel = PlayerModel(index: index, life: startingLife, numOfPlayers: gameMode.numOfPlayers())
       tempPlayerModels.append(newPlayerModel)
     }
-    self.playerModels = tempPlayerModels
+    return tempPlayerModels
+  }
+
+  func resetMatch() {
+    self.playerModels = NewMatchModel.setupMatch(gameMode: gameMode, startingLife: startingLife)
   }
 }

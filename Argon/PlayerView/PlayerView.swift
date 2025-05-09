@@ -36,13 +36,16 @@ struct PlayerView: View {
           .minimumScaleFactor(0.01)
           .frame(maxHeight: geom.size.height * 0.10)
           .opacity(lifeDelta != 0 ? 1.0 : 0.0)
+          .padding(.top, 12)
+
         LifeTrackerView(
           backgroundColor: backgroundColor,
           playerModel: matchModel.playerModels[playerIndex],
           lifeDelta: $lifeDelta,
           history: $matchModel.playerModels[playerIndex].history
         )
-          .frame(minHeight: geom.size.height * 0.4)
+        .frame(minHeight: geom.size.height * 0.4)
+
         PlayerSettingsView(
           backgroundColor: backgroundColor,
           rotation: rotation, 
@@ -52,7 +55,7 @@ struct PlayerView: View {
           isShowingCommanderDMG: $isShowingSpecialDMG,
           history: $matchModel.playerModels[playerIndex].history, specialDMGPresenter: $specialDMGPresenter
         )
-          .frame(maxHeight: geom.size.height * 0.25)
+        .frame(maxHeight: geom.size.height * 0.25)
       }
       .padding(10)
     }

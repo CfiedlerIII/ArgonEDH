@@ -98,7 +98,7 @@ struct CommanderDamageView_Previews: PreviewProvider {
   static var gameMode: GameMode = .threeTPlayer
 
   static var previews: some View {
-    CommanderDamageView(playerIndex: 0, matchModel: NewMatchModel(startinglife: 40, gameMode: gameMode))
+    CommanderDamageView(playerIndex: 0, matchModel: NewMatchModel(startingLife: 40, gameMode: gameMode))
   }
 }
 
