@@ -10,6 +10,13 @@ import SwiftUI
 struct ModalCloseWrapper: ViewModifier {
   let title: String
   @Binding var isDisplayed: Bool
+  @Binding var specialDMGPresenter: (Int,Angle,Bool)?
+
+  init(title: String, isDisplayed: Binding<Bool> = .constant(false), specialDMGPresenter: Binding<(Int, Angle,Bool)?> = .constant(nil)) {
+    self.title = title
+    self._isDisplayed = isDisplayed
+    self._specialDMGPresenter = specialDMGPresenter
+  }
 
   func body(content: Content) -> some View {
     GeometryReader { geometry in
@@ -25,6 +32,7 @@ struct ModalCloseWrapper: ViewModifier {
         VStack {
           HStack {
             Button(action: {
+              specialDMGPresenter = nil
               isDisplayed = false
             }, label: {
               Image(systemName: "xmark")

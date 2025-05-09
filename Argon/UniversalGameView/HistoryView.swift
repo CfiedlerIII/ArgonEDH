@@ -30,8 +30,8 @@ class History {
 
 struct HistoryView: View {
 
-  var history: History
-  @Binding var isDisplayed: Bool
+  @Binding var history: History
+  @Binding var specialDMGPresenter: (Int,Angle,Bool)?
 
   var body: some View {
     GeometryReader { geometry in
@@ -56,7 +56,8 @@ struct HistoryView: View {
           .font(.system(size: 20))
         Spacer()
       }
-      .modifier(ModalCloseWrapper(title: "History", isDisplayed: $isDisplayed))
+      .modifier(ModalCloseWrapper(title: "History", specialDMGPresenter: $specialDMGPresenter))
+      .getContrastColor(backgroundColor: .white)
     }
   }
 }
@@ -66,6 +67,6 @@ struct HistoryView_Previews: PreviewProvider {
   static let history = History(deltas: [History.Delta(4),History.Delta(-5),History.Delta(1)])
 
   static var previews: some View {
-    HistoryView(history: history, isDisplayed: $isDisplayed)
+    HistoryView(history: .constant(history), specialDMGPresenter: .constant(nil))
   }
 }

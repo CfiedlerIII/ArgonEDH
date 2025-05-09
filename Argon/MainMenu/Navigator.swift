@@ -9,7 +9,7 @@ import SwiftUI
 
 enum DisplayedView {
   case mainMenu
-  case lifeTracker
+  case lifeTracker(GameMode,Int,Bool)
 }
 
 struct Navigator: View {
@@ -19,8 +19,8 @@ struct Navigator: View {
     switch displayedView {
     case .mainMenu:
       MainMenuView(navigator: self)
-    case .lifeTracker:
-      GameViewWrapper(navigator: self)
+    case .lifeTracker(let gameMode, let startingLife, let hasCMDDMG):
+      GameViewWrapper(navigator: self, gameMode: gameMode, startingLife: startingLife, hasCMDDMG: hasCMDDMG)
     }
   }
 }

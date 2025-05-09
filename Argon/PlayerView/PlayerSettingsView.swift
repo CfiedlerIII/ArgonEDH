@@ -11,17 +11,21 @@ struct PlayerSettingsView: View {
 
   var backgroundColor: Color
   var rotation: Angle
+  var playerIndex: Int
+  @ObservedObject var matchModel: NewMatchModel
   @Binding var isShowingHistory: Bool
-  @Binding var isShowingCMDR: Bool
+  @Binding var isShowingCommanderDMG: Bool
   @Binding var history: History
+  @Binding var specialDMGPresenter: (Int,Angle,Bool)?
 
   var body: some View {
     GeometryReader { geometry in
       HStack(spacing: 40) {
         Spacer()
         Button(action: {
-          print("Special Damage Pressed")
-          isShowingCMDR = true
+          print("Commander Damage Pressed")
+          isShowingCommanderDMG = true
+          specialDMGPresenter = (playerIndex, rotation, false)
         }, label: {
           Image(systemName: "checkerboard.shield")
             .resizable()
@@ -29,24 +33,16 @@ struct PlayerSettingsView: View {
             .scaledToFit()
             .getContrastColor(backgroundColor: backgroundColor)
         })
-        .sheet(isPresented: $isShowingCMDR, content: {
-          SpecialDamageView(isDisplayed: $isShowingCMDR)
-            .modifier(RotatedView(angle: rotation))
-        })
 
         Button(action: {
           print("Life History Pressed")
-          isShowingHistory = true
+          specialDMGPresenter = (playerIndex, rotation, true)
         }, label: {
           Image(systemName: "menucard")
             .resizable()
             .font(.system(size: 500).weight(.ultraLight))
             .scaledToFit()
             .getContrastColor(backgroundColor: backgroundColor)
-        })
-        .sheet(isPresented: $isShowingHistory, content: {
-          HistoryView(history: history, isDisplayed: $isShowingHistory)
-            .modifier(RotatedView(angle: rotation))
         })
         Spacer()
       }
@@ -59,14 +55,15 @@ struct PlayerSettingsView: View {
 struct PlayerSettingsView_Previews: PreviewProvider {
   @State static var isShowingStuff = false
   @State static var history = History()
+  @State static var specialDMG: (Int, Angle,Bool)? = nil
 
   static var previews: some View {
     PlayerSettingsView(
       backgroundColor: .blue,
-      rotation: .zero,
+      rotation: .zero, playerIndex: 0, matchModel: NewMatchModel(hasCommanderDamage: true, gameMode: .fourCorners),
       isShowingHistory: $isShowingStuff,
-      isShowingCMDR: $isShowingStuff,
-      history: $history
+      isShowingCommanderDMG: $isShowingStuff,
+      history: $history, specialDMGPresenter: $specialDMG
     )
   }
 }

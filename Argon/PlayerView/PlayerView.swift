@@ -12,11 +12,20 @@ struct PlayerView: View {
   var backgroundColor: Color = .pink
   var padding: CGFloat = 10
   var rotation: Angle
-  @State var count: Int
+  var playerIndex: Int
+  @ObservedObject var matchModel: NewMatchModel
   @State var lifeDelta: Int = 0
   @State var isShowingHistory = false
-  @State var isShowingCMDR = false
-  @State var history = History()
+  @State var isShowingSpecialDMG = false
+  @Binding var specialDMGPresenter: (Int,Angle,Bool)?
+
+  init(backgroundColor: Color, rotation: Angle, matchModel: NewMatchModel, playerIndex: Int, specialDMGPresenter: Binding<(Int, Angle,Bool)?>) {
+    self.backgroundColor = backgroundColor
+    self.rotation = rotation
+    self.matchModel = matchModel
+    self.playerIndex = playerIndex
+    self._specialDMGPresenter = specialDMGPresenter
+  }
 
   var body: some View {
     GeometryReader { geom in
@@ -29,17 +38,19 @@ struct PlayerView: View {
           .opacity(lifeDelta != 0 ? 1.0 : 0.0)
         LifeTrackerView(
           backgroundColor: backgroundColor,
-          count: $count,
+          playerModel: matchModel.playerModels[playerIndex],
           lifeDelta: $lifeDelta,
-          history: $history
+          history: $matchModel.playerModels[playerIndex].history
         )
           .frame(minHeight: geom.size.height * 0.4)
         PlayerSettingsView(
           backgroundColor: backgroundColor,
-          rotation: rotation,
+          rotation: rotation, 
+          playerIndex: playerIndex,
+          matchModel: matchModel,
           isShowingHistory: $isShowingHistory,
-          isShowingCMDR: $isShowingCMDR,
-          history: $history
+          isShowingCommanderDMG: $isShowingSpecialDMG,
+          history: $matchModel.playerModels[playerIndex].history, specialDMGPresenter: $specialDMGPresenter
         )
           .frame(maxHeight: geom.size.height * 0.25)
       }
@@ -53,6 +64,6 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
   static var previews: some View {
-    PlayerView(rotation: .degrees(0.0), count: 2)
+    PlayerView(backgroundColor: .green, rotation: .degrees(0.0), matchModel: NewMatchModel(hasCommanderDamage: true, gameMode: .fourCorners), playerIndex: 0, specialDMGPresenter: .constant(nil))
   }
 }

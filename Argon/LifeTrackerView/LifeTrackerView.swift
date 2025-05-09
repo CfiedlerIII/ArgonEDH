@@ -10,7 +10,7 @@ import SwiftUI
 struct LifeTrackerView: View {
 
   var backgroundColor: Color = .blue
-  @Binding var count: Int
+  @ObservedObject var playerModel: PlayerModel
   @Binding var lifeDelta: Int
   @Binding var history: History
   @State var deltaTimer: Timer? = nil
@@ -26,15 +26,23 @@ struct LifeTrackerView: View {
             isLongPressing.toggle()
             holdTimer?.invalidate()
           } else {
-            count = count - 1
+            playerModel.adjustLife(value: -1)
             handleDeltaCounter(-1)
           }
         }, label: {
-          Image(systemName: "minus")
-            .resizable()
-            .scaledToFit()
-            .getContrastColor(backgroundColor: backgroundColor)
-            .modifier(FitImageToLifeTracker(geom: geom))
+          VStack {
+            Spacer()
+            HStack {
+              Spacer()
+              Image(systemName: "minus")
+                .resizable()
+                .scaledToFit()
+                .getContrastColor(backgroundColor: backgroundColor)
+                .modifier(FitImageToLifeTracker(geom: geom))
+              Spacer()
+            }
+            Spacer()
+          }
         })
         .simultaneousGesture(
           LongPressGesture(
@@ -45,29 +53,37 @@ struct LifeTrackerView: View {
               withTimeInterval: 0.1,
               repeats: true,
               block: { _ in
-                count = count - 1
+                playerModel.adjustLife(value: -1)
                 handleDeltaCounter(-1)
               }
             )
           }
         )
 
-        TrackerView(trackerType: .life, backgroundColor: backgroundColor, count: $count)
+        TrackerView(trackerType: .life, backgroundColor: backgroundColor, count: $playerModel.life)
 
         Button(action: {
           if(isLongPressing){
             isLongPressing.toggle()
             holdTimer?.invalidate()
           } else {
-            count = count + 1
+            playerModel.adjustLife(value: 1)
             handleDeltaCounter(1)
           }
         }, label: {
-          Image(systemName: "plus")
-            .resizable()
-            .scaledToFit()
-            .getContrastColor(backgroundColor: backgroundColor)
-            .modifier(FitImageToLifeTracker(geom: geom))
+          VStack {
+            Spacer()
+            HStack {
+              Spacer()
+              Image(systemName: "plus")
+                .resizable()
+                .scaledToFit()
+                .getContrastColor(backgroundColor: backgroundColor)
+                .modifier(FitImageToLifeTracker(geom: geom))
+              Spacer()
+            }
+            Spacer()
+          }
         })
         .simultaneousGesture(
           LongPressGesture(
@@ -78,7 +94,7 @@ struct LifeTrackerView: View {
               withTimeInterval: 0.1,
               repeats: true,
               block: { _ in
-                count = count + 1
+                playerModel.adjustLife(value: 1)
                 handleDeltaCounter(1)
               }
             )
@@ -109,7 +125,7 @@ struct LifeTrackerView_Previews: PreviewProvider {
   @State static var history = History()
 
   static var previews: some View {
-    LifeTrackerView(count: $count, lifeDelta: $delta, history: $history)
+    LifeTrackerView(playerModel: PlayerModel(index: 0, life: 40, numOfPlayers: 4), lifeDelta: $delta, history: $history)
   }
 }
 
