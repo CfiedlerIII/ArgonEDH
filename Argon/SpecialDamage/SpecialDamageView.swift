@@ -65,6 +65,6 @@ struct SpecialDamageView_Previews: PreviewProvider {
   @State static var specialDMGPresenter: (Int,Angle,Bool)?
 
   static var previews: some View {
-    SpecialDamageView(matchModel: NewMatchModel(startinglife: 40, hasCommanderDamage: false, gameMode: .fourCorners), specialDMGPresenter: $specialDMGPresenter, playerIndex: 0)
+    SpecialDamageView(matchModel: NewMatchModel(startingLife: 40, hasCommanderDamage: false, gameMode: .fourCorners), specialDMGPresenter: $specialDMGPresenter, playerIndex: 0)
   }
 }

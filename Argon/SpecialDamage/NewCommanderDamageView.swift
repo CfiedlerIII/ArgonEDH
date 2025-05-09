@@ -77,5 +77,5 @@ struct NewCommanderDamageView: View {
 }
 
 #Preview {
-  NewCommanderDamageView(playerIndex: 0, matchModel: NewMatchModel(startinglife: 40, gameMode: .threeTPlayer), isDisplayed: .constant(true))
+  NewCommanderDamageView(playerIndex: 0, matchModel: NewMatchModel(startingLife: 40, gameMode: .threeTPlayer), isDisplayed: .constant(true))
 }

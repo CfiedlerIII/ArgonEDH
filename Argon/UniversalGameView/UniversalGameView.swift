@@ -69,7 +69,7 @@ struct GameViewWrapper: View {
       ZStack {
         Color.black
           .ignoresSafeArea()
-        UniversalGameView(navigator: navigator, matchModel: NewMatchModel(startinglife: startingLife, hasCommanderDamage: hasCMDDMG, gameMode: gameMode))
+        UniversalGameView(navigator: navigator, matchModel: NewMatchModel(startingLife: startingLife, hasCommanderDamage: hasCMDDMG, gameMode: gameMode))
       }
     }
   }
@@ -80,6 +80,7 @@ struct UniversalGameView: View {
   @ObservedObject var matchModel: NewMatchModel
   @State var specialDMGPresenter: (Int,Angle,Bool)? = nil
   @State var isDisplayingHistory: Bool = false
+  @State var isSettingsDisplayed: Bool = false
 
   var body: some View {
     GeometryReader { geom in
@@ -172,6 +173,25 @@ struct UniversalGameView: View {
           .frame(width: geom.size.width, height: geom.size.height)
         }
 
+        Button(action: {
+          isSettingsDisplayed = true
+        }, label: {
+          Image(systemName: "gearshape.circle")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 48, height: 48)
+        })
+        .foregroundStyle(.black)
+        .padding(2)
+        .background(.white)
+        .clipShape(
+          Circle()
+        )
+        if isSettingsDisplayed {
+          GameSettingsView(navigator: self.navigator, matchModel: matchModel, isDisplayed: $isSettingsDisplayed)
+            .background(.white.opacity(0.95))
+        }
+
         if let specialPresenter = specialDMGPresenter {
           if specialPresenter.2 {
             HistoryView(history: $matchModel.playerModels[specialPresenter.0].history, specialDMGPresenter: $specialDMGPresenter
@@ -200,6 +220,6 @@ struct UniversalGameView: View {
 
 struct UniversalGameView_Previews: PreviewProvider {
   static var previews: some View {
-    UniversalGameView(navigator: Navigator(), matchModel: NewMatchModel(startinglife: 40, hasCommanderDamage: true, gameMode: .fourPlus))
+    UniversalGameView(navigator: Navigator(), matchModel: NewMatchModel(startingLife: 40, hasCommanderDamage: true, gameMode: .fourPlus))
   }
 }
