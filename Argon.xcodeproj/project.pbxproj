@@ -21,6 +21,22 @@
 		1D32735A2BEC8E0000F55D87 /* RotatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3273592BEC8E0000F55D87 /* RotatedView.swift */; };
 		1D32735D2BEE804F00F55D87 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D32735C2BEE804F00F55D87 /* MainMenuView.swift */; };
 		1D32735F2BEEB68E00F55D87 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D32735E2BEEB68E00F55D87 /* Navigator.swift */; };
+		1D571D602D778E5F000708EF /* FancyCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D571D5F2D778E5F000708EF /* FancyCounterView.swift */; };
+		1D571D622D778E89000708EF /* ButtonLongPressModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D571D612D778E89000708EF /* ButtonLongPressModifier.swift */; };
+		1D571D642D778EAC000708EF /* ImageModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D571D632D778EAC000708EF /* ImageModifier.swift */; };
+		1D571D662D77923B000708EF /* PlayerNumberMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D571D652D77923B000708EF /* PlayerNumberMenuView.swift */; };
+		1D571D682D7796C8000708EF /* GameModeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D571D672D7796C8000708EF /* GameModeMenuView.swift */; };
+		1D571D6A2D77AB40000708EF /* NewCommanderDamageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D571D692D77AB40000708EF /* NewCommanderDamageView.swift */; };
+		1D571D6C2D79439D000708EF /* DamageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D571D6B2D79439D000708EF /* DamageView.swift */; };
+		1DAB0B002BF1C3840091B924 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB0AFF2BF1C3840091B924 /* HistoryView.swift */; };
+		1DAB0B022BF1C6EA0091B924 /* SpecialDamageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB0B012BF1C6EA0091B924 /* SpecialDamageView.swift */; };
+		1DAB0B052BF1D4940091B924 /* ModalCloseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB0B042BF1D4940091B924 /* ModalCloseWrapper.swift */; };
+		1DC5FCF52BF7F19A00EAB526 /* CommanderDamageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5FCF42BF7F19A00EAB526 /* CommanderDamageView.swift */; };
+		1DC5FCFB2BFE4B8B00EAB526 /* CommanderModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5FCFA2BFE4B8B00EAB526 /* CommanderModels.swift */; };
+		1DC5FCFD2BFFE98100EAB526 /* ClearBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC5FCFC2BFFE98100EAB526 /* ClearBackgroundView.swift */; };
+		1DDF30FC2C98EBC400BD40C7 /* InfectCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF30FB2C98EBC400BD40C7 /* InfectCounterView.swift */; };
+		1DDF30FE2C9A031200BD40C7 /* SmallDamageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF30FD2C9A031200BD40C7 /* SmallDamageView.swift */; };
+		1DEC3E172C9A0CBC00BD7AC3 /* PlayerCommanderDamageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEC3E162C9A0CBC00BD7AC3 /* PlayerCommanderDamageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +56,22 @@
 		1D32735C2BEE804F00F55D87 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		1D32735E2BEEB68E00F55D87 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		1D3273672BEEBE7800F55D87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1D571D5F2D778E5F000708EF /* FancyCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyCounterView.swift; sourceTree = "<group>"; };
+		1D571D612D778E89000708EF /* ButtonLongPressModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLongPressModifier.swift; sourceTree = "<group>"; };
+		1D571D632D778EAC000708EF /* ImageModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModifier.swift; sourceTree = "<group>"; };
+		1D571D652D77923B000708EF /* PlayerNumberMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNumberMenuView.swift; sourceTree = "<group>"; };
+		1D571D672D7796C8000708EF /* GameModeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeMenuView.swift; sourceTree = "<group>"; };
+		1D571D692D77AB40000708EF /* NewCommanderDamageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommanderDamageView.swift; sourceTree = "<group>"; };
+		1D571D6B2D79439D000708EF /* DamageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageView.swift; sourceTree = "<group>"; };
+		1DAB0AFF2BF1C3840091B924 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		1DAB0B012BF1C6EA0091B924 /* SpecialDamageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialDamageView.swift; sourceTree = "<group>"; };
+		1DAB0B042BF1D4940091B924 /* ModalCloseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCloseWrapper.swift; sourceTree = "<group>"; };
+		1DC5FCF42BF7F19A00EAB526 /* CommanderDamageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderDamageView.swift; sourceTree = "<group>"; };
+		1DC5FCFA2BFE4B8B00EAB526 /* CommanderModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderModels.swift; sourceTree = "<group>"; };
+		1DC5FCFC2BFFE98100EAB526 /* ClearBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearBackgroundView.swift; sourceTree = "<group>"; };
+		1DDF30FB2C98EBC400BD40C7 /* InfectCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfectCounterView.swift; sourceTree = "<group>"; };
+		1DDF30FD2C9A031200BD40C7 /* SmallDamageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallDamageView.swift; sourceTree = "<group>"; };
+		1DEC3E162C9A0CBC00BD7AC3 /* PlayerCommanderDamageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCommanderDamageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +104,12 @@
 		1D3273302BE97B6E00F55D87 /* Argon */ = {
 			isa = PBXGroup;
 			children = (
+				1D571D5E2D778E4F000708EF /* CounterView */,
 				1D3273672BEEBE7800F55D87 /* Info.plist */,
 				1D32735B2BEE803800F55D87 /* MainMenu */,
 				1D3273542BE9E03900F55D87 /* UniversalGameView */,
+				1DAB0B062BF7F1520091B924 /* SpecialDamage */,
+				1DDF30FF2C9A068F00BD40C7 /* CommanderDamage */,
 				1D32734F2BE98D7A00F55D87 /* PlayerView */,
 				1D32734A2BE9849B00F55D87 /* LifeTrackerView */,
 				1D3273432BE97C8A00F55D87 /* TrackerView */,
@@ -108,6 +143,9 @@
 			children = (
 				1D3273482BE97F9200F55D87 /* View+.swift */,
 				1D32734D2BE98A2300F55D87 /* GeometryProxy+.swift */,
+				1DC5FCFC2BFFE98100EAB526 /* ClearBackgroundView.swift */,
+				1D571D612D778E89000708EF /* ButtonLongPressModifier.swift */,
+				1D571D632D778EAC000708EF /* ImageModifier.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -142,6 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				1D3273552BE9E0BD00F55D87 /* UniversalGameView.swift */,
+				1DAB0AFF2BF1C3840091B924 /* HistoryView.swift */,
+				1DAB0B042BF1D4940091B924 /* ModalCloseWrapper.swift */,
 			);
 			path = UniversalGameView;
 			sourceTree = "<group>";
@@ -150,9 +190,41 @@
 			isa = PBXGroup;
 			children = (
 				1D32735C2BEE804F00F55D87 /* MainMenuView.swift */,
+				1D571D652D77923B000708EF /* PlayerNumberMenuView.swift */,
 				1D32735E2BEEB68E00F55D87 /* Navigator.swift */,
+				1D571D672D7796C8000708EF /* GameModeMenuView.swift */,
 			);
 			path = MainMenu;
+			sourceTree = "<group>";
+		};
+		1D571D5E2D778E4F000708EF /* CounterView */ = {
+			isa = PBXGroup;
+			children = (
+				1D571D5F2D778E5F000708EF /* FancyCounterView.swift */,
+			);
+			path = CounterView;
+			sourceTree = "<group>";
+		};
+		1DAB0B062BF7F1520091B924 /* SpecialDamage */ = {
+			isa = PBXGroup;
+			children = (
+				1DC5FCFA2BFE4B8B00EAB526 /* CommanderModels.swift */,
+				1DAB0B012BF1C6EA0091B924 /* SpecialDamageView.swift */,
+				1DC5FCF42BF7F19A00EAB526 /* CommanderDamageView.swift */,
+				1DDF30FB2C98EBC400BD40C7 /* InfectCounterView.swift */,
+				1D571D692D77AB40000708EF /* NewCommanderDamageView.swift */,
+			);
+			path = SpecialDamage;
+			sourceTree = "<group>";
+		};
+		1DDF30FF2C9A068F00BD40C7 /* CommanderDamage */ = {
+			isa = PBXGroup;
+			children = (
+				1DDF30FD2C9A031200BD40C7 /* SmallDamageView.swift */,
+				1DEC3E162C9A0CBC00BD7AC3 /* PlayerCommanderDamageView.swift */,
+				1D571D6B2D79439D000708EF /* DamageView.swift */,
+			);
+			path = CommanderDamage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,18 +297,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D571D622D778E89000708EF /* ButtonLongPressModifier.swift in Sources */,
+				1DC5FCFB2BFE4B8B00EAB526 /* CommanderModels.swift in Sources */,
+				1DEC3E172C9A0CBC00BD7AC3 /* PlayerCommanderDamageView.swift in Sources */,
 				1D3273512BE98D8800F55D87 /* PlayerView.swift in Sources */,
 				1D32734E2BE98A2300F55D87 /* GeometryProxy+.swift in Sources */,
 				1D3273342BE97B6E00F55D87 /* ContentView.swift in Sources */,
+				1D571D662D77923B000708EF /* PlayerNumberMenuView.swift in Sources */,
 				1D3273322BE97B6E00F55D87 /* ArgonApp.swift in Sources */,
+				1DC5FCFD2BFFE98100EAB526 /* ClearBackgroundView.swift in Sources */,
+				1D571D642D778EAC000708EF /* ImageModifier.swift in Sources */,
+				1DC5FCF52BF7F19A00EAB526 /* CommanderDamageView.swift in Sources */,
+				1DAB0B002BF1C3840091B924 /* HistoryView.swift in Sources */,
 				1D3273532BE98E7B00F55D87 /* PlayerSettingsView.swift in Sources */,
+				1D571D6C2D79439D000708EF /* DamageView.swift in Sources */,
 				1D3273562BE9E0BD00F55D87 /* UniversalGameView.swift in Sources */,
+				1D571D682D7796C8000708EF /* GameModeMenuView.swift in Sources */,
+				1DDF30FE2C9A031200BD40C7 /* SmallDamageView.swift in Sources */,
 				1D32734C2BE984A800F55D87 /* LifeTrackerView.swift in Sources */,
+				1DAB0B052BF1D4940091B924 /* ModalCloseWrapper.swift in Sources */,
 				1D32735A2BEC8E0000F55D87 /* RotatedView.swift in Sources */,
+				1DDF30FC2C98EBC400BD40C7 /* InfectCounterView.swift in Sources */,
 				1D32735D2BEE804F00F55D87 /* MainMenuView.swift in Sources */,
+				1D571D6A2D77AB40000708EF /* NewCommanderDamageView.swift in Sources */,
 				1D32735F2BEEB68E00F55D87 /* Navigator.swift in Sources */,
 				1D3273492BE97F9200F55D87 /* View+.swift in Sources */,
+				1D571D602D778E5F000708EF /* FancyCounterView.swift in Sources */,
 				1D3273452BE97CB000F55D87 /* TrackerView.swift in Sources */,
+				1DAB0B022BF1C6EA0091B924 /* SpecialDamageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Argon/Preview Content\"";
@@ -379,7 +468,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -387,6 +476,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mimicSoftworks.Argon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -410,7 +500,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
