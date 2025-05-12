@@ -21,84 +21,47 @@ struct LifeTrackerView: View {
     GeometryReader { geom in
       HStack(alignment: .center) {
         Spacer()
-        Button(action: {
-          if(isLongPressing){
-            isLongPressing.toggle()
-            holdTimer?.invalidate()
-          } else {
+        ButtonImageView(
+          holdTimer: $holdTimer,
+          isLongPressing: $isLongPressing,
+          systemName: "minus",
+          buttonTapAction: {
+            if(isLongPressing){
+              isLongPressing.toggle()
+              holdTimer?.invalidate()
+            } else {
+              playerModel.adjustLife(value: -1)
+              handleDeltaCounter(-1)
+            }
+          },
+          buttonHoldAction: {
             playerModel.adjustLife(value: -1)
             handleDeltaCounter(-1)
-          }
-        }, label: {
-          VStack {
-            Spacer()
-            HStack {
-              Spacer()
-              Image(systemName: "minus")
-                .resizable()
-                .scaledToFit()
-                .getContrastColor(backgroundColor: backgroundColor)
-                .modifier(FitImageToLifeTracker(geom: geom))
-              Spacer()
-            }
-            Spacer()
-          }
-        })
-        .simultaneousGesture(
-          LongPressGesture(
-            minimumDuration: 0.2
-          ).onEnded { _ in
-            self.isLongPressing = true
-            holdTimer = Timer.scheduledTimer(
-              withTimeInterval: 0.1,
-              repeats: true,
-              block: { _ in
-                playerModel.adjustLife(value: -1)
-                handleDeltaCounter(-1)
-              }
-            )
-          }
+          },
+          backgroundColor: backgroundColor
         )
 
         TrackerView(trackerType: .life, backgroundColor: backgroundColor, count: $playerModel.life)
+          .frame(width: geom.size.width * 0.5, height: geom.size.height)
 
-        Button(action: {
-          if(isLongPressing){
-            isLongPressing.toggle()
-            holdTimer?.invalidate()
-          } else {
+        ButtonImageView(
+          holdTimer: $holdTimer,
+          isLongPressing: $isLongPressing,
+          systemName: "plus",
+          buttonTapAction: {
+            if(isLongPressing){
+              isLongPressing.toggle()
+              holdTimer?.invalidate()
+            } else {
+              playerModel.adjustLife(value: 1)
+              handleDeltaCounter(1)
+            }
+          },
+          buttonHoldAction: {
             playerModel.adjustLife(value: 1)
             handleDeltaCounter(1)
-          }
-        }, label: {
-          VStack {
-            Spacer()
-            HStack {
-              Spacer()
-              Image(systemName: "plus")
-                .resizable()
-                .scaledToFit()
-                .getContrastColor(backgroundColor: backgroundColor)
-                .modifier(FitImageToLifeTracker(geom: geom))
-              Spacer()
-            }
-            Spacer()
-          }
-        })
-        .simultaneousGesture(
-          LongPressGesture(
-            minimumDuration: 0.2
-          ).onEnded { _ in
-            self.isLongPressing = true
-            holdTimer = Timer.scheduledTimer(
-              withTimeInterval: 0.1,
-              repeats: true,
-              block: { _ in
-                playerModel.adjustLife(value: 1)
-                handleDeltaCounter(1)
-              }
-            )
-          }
+          },
+          backgroundColor: backgroundColor
         )
         Spacer()
       }
@@ -135,5 +98,55 @@ struct FitImageToLifeTracker: ViewModifier {
   func body(content: Content) -> some View {
     content
       .frame(width: geom.smallerDimension() * 0.25, height: geom.smallerDimension() * 0.25)
+  }
+}
+
+struct ButtonImageView: View {
+  @Binding var holdTimer: Timer?
+  @Binding var isLongPressing: Bool
+  var systemName: String
+  var buttonTapAction: (() -> ())?
+  var buttonHoldAction: (() -> ())?
+  var backgroundColor: Color
+
+  var body: some View {
+    GeometryReader { geom in
+      Button(action: {
+        if(isLongPressing){
+          isLongPressing.toggle()
+          holdTimer?.invalidate()
+        } else {
+          buttonTapAction?()
+        }
+      }, label: {
+        VStack {
+          Spacer()
+          HStack {
+            Spacer()
+            Image(systemName: systemName)
+              .resizable()
+              .scaledToFit()
+              .getContrastColor(backgroundColor: backgroundColor)
+              .modifier(FitImageToLifeTracker(geom: geom))
+            Spacer()
+          }
+          Spacer()
+        }
+      })
+      .simultaneousGesture(
+        LongPressGesture(
+          minimumDuration: 0.2
+        ).onEnded { _ in
+          self.isLongPressing = true
+          holdTimer = Timer.scheduledTimer(
+            withTimeInterval: 0.1,
+            repeats: true,
+            block: { _ in
+              buttonHoldAction?()
+            }
+          )
+        }
+      )
+    }
   }
 }
