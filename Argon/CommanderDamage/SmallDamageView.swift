@@ -25,104 +25,7 @@ struct SmallDamageView: View {
           Divider()
             .frame(height: 2)
             .overlay(.black)
-        }
-
-        VStack {
-          Image(systemName: "plus")
-            .resizable()
-            .font(.system(size: 500).weight(.light))
-            .aspectRatio(contentMode: .fit)
-            .getContrastColor(backgroundColor: backgroundColor)
-            .modifier(MiniDamageSizeModifier())
-            .opacity(0.25)
-
-          Color.white
-            .opacity(0.0)
-            .modifier(MiniDamageSizeModifier())
-
-          Image(systemName: "minus")
-            .resizable()
-            .font(.system(size: 500).weight(.light))
-            .aspectRatio(contentMode: .fit)
-            .getContrastColor(backgroundColor: backgroundColor)
-            .modifier(MiniDamageSizeModifier())
-            .opacity(0.25)
-        }
-
-        VStack {
-          Rectangle()
-            .fill(.clear)
-            .contentShape(Rectangle())
-            .gesture(
-              TapGesture()
-                .onEnded { value in
-                  if(isLongPressing){
-                    isLongPressing.toggle()
-                    holdTimer?.invalidate()
-                  } else {
-                    if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
-                      playerModel.adjustCommanderDMG(value: 1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
-                    } else {
-                      playerModel.adjustPoisonDMG(value: 1)
-                    }
-                  }
-                }
-            )
-            .simultaneousGesture(
-              LongPressGesture(
-                minimumDuration: 0.2
-              ).onEnded { _ in
-                self.isLongPressing = true
-                holdTimer = Timer.scheduledTimer(
-                  withTimeInterval: 0.1,
-                  repeats: true,
-                  block: { _ in
-                    if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
-                      playerModel.adjustCommanderDMG(value: 1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
-                    } else {
-                      playerModel.adjustPoisonDMG(value: 1)
-                    }
-                  }
-                )
-              }
-            )
-
-          Rectangle()
-            .fill(.clear)
-            .contentShape(Rectangle())
-            .gesture(
-              TapGesture()
-                .onEnded { value in
-                  if(isLongPressing){
-                    isLongPressing.toggle()
-                    holdTimer?.invalidate()
-                  } else {
-                    if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
-                      playerModel.adjustCommanderDMG(value: -1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
-                    } else {
-                      playerModel.adjustPoisonDMG(value: -1)
-                    }
-                  }
-                }
-            )
-            .simultaneousGesture(
-              LongPressGesture(
-                minimumDuration: 0.2
-              ).onEnded { _ in
-                self.isLongPressing = true
-                holdTimer = Timer.scheduledTimer(
-                  withTimeInterval: 0.1,
-                  repeats: true,
-                  block: { _ in
-                    if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
-                      playerModel.adjustCommanderDMG(value: -1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
-                    } else {
-                      playerModel.adjustPoisonDMG(value: -1)
-                    }
-                  }
-                )
-              }
-            )
+            .opacity(0.1)
         }
 
         Text("\(dmgCount)")
@@ -131,6 +34,82 @@ struct SmallDamageView: View {
           .minimumScaleFactor(0.01)
           .getContrastColor(backgroundColor: backgroundColor)
           .modifier(MiniDamageSizeModifier(tweakedBy: 0.8))
+
+        VStack {
+          Rectangle()
+            .fill(.clear)
+            .contentShape(Rectangle())
+            .gesture(
+              TapGesture()
+                .onEnded { value in
+                  if(isLongPressing){
+                    isLongPressing.toggle()
+                    holdTimer?.invalidate()
+                  } else {
+                    if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
+                      playerModel.adjustCommanderDMG(value: 1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
+                    } else {
+                      playerModel.adjustPoisonDMG(value: 1)
+                    }
+                  }
+                }
+            )
+            .simultaneousGesture(
+              LongPressGesture(
+                minimumDuration: 0.2
+              ).onEnded { _ in
+                self.isLongPressing = true
+                holdTimer = Timer.scheduledTimer(
+                  withTimeInterval: 0.1,
+                  repeats: true,
+                  block: { _ in
+                    if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
+                      playerModel.adjustCommanderDMG(value: 1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
+                    } else {
+                      playerModel.adjustPoisonDMG(value: 1)
+                    }
+                  }
+                )
+              }
+            )
+
+          Rectangle()
+            .fill(.clear)
+            .contentShape(Rectangle())
+            .gesture(
+              TapGesture()
+                .onEnded { value in
+                  if(isLongPressing){
+                    isLongPressing.toggle()
+                    holdTimer?.invalidate()
+                  } else {
+                    if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
+                      playerModel.adjustCommanderDMG(value: -1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
+                    } else {
+                      playerModel.adjustPoisonDMG(value: -1)
+                    }
+                  }
+                }
+            )
+            .simultaneousGesture(
+              LongPressGesture(
+                minimumDuration: 0.2
+              ).onEnded { _ in
+                self.isLongPressing = true
+                holdTimer = Timer.scheduledTimer(
+                  withTimeInterval: 0.1,
+                  repeats: true,
+                  block: { _ in
+                    if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
+                      playerModel.adjustCommanderDMG(value: -1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
+                    } else {
+                      playerModel.adjustPoisonDMG(value: -1)
+                    }
+                  }
+                )
+              }
+            )
+        }
       }
       .background(backgroundColor)
       .clipShape(

@@ -14,6 +14,7 @@ struct PlayerSettingsView: View {
   var playerIndex: Int
   @ObservedObject var matchModel: NewMatchModel
   @Binding var isShowingHistory: Bool
+  @Binding var isShowingPoison: Bool
   @Binding var isShowingCommanderDMG: Bool
   @Binding var history: History
   @Binding var specialDMGPresenter: (Int,Angle,Bool)?
@@ -22,20 +23,48 @@ struct PlayerSettingsView: View {
     GeometryReader { geometry in
       HStack(spacing: 40) {
         Spacer()
+        if matchModel.hasCommanderDamage {
+          Button(action: {
+            isShowingHistory = false
+            isShowingPoison = false
+            isShowingCommanderDMG.toggle()
+            specialDMGPresenter = (playerIndex, rotation, false)
+          }, label: {
+            Image(systemName: "checkerboard.shield")
+              .resizable()
+              .font(.system(size: 500).weight(.ultraLight))
+              .scaledToFit()
+              .getContrastColor(backgroundColor: backgroundColor)
+              .fontWeight(isShowingCommanderDMG ? .bold : .regular)
+          })
+        }
+
         Button(action: {
-          print("Commander Damage Pressed")
-          isShowingCommanderDMG = true
-          specialDMGPresenter = (playerIndex, rotation, false)
+          isShowingHistory = false
+          isShowingPoison.toggle()
+          isShowingCommanderDMG = false
         }, label: {
-          Image(systemName: "checkerboard.shield")
-            .resizable()
-            .font(.system(size: 500).weight(.ultraLight))
-            .scaledToFit()
-            .getContrastColor(backgroundColor: backgroundColor)
+          ZStack {
+            Image(systemName: "drop")
+              .resizable()
+              .font(.system(size: 500).weight(.ultraLight))
+              .scaledToFit()
+              .getContrastColor(backgroundColor: backgroundColor)
+              .fontWeight(isShowingPoison ? .bold : .regular)
+            Image(getImageContrastMode(backgroundColor: backgroundColor) == .light ? "skull.light.fill" : "skull.dark.fill")
+              .resizable()
+              .font(.system(size: 500).weight(.medium))
+              .scaledToFit()
+              .getContrastColor(backgroundColor: backgroundColor)
+              .frame(width: geometry.size.height/3)
+              .padding(.top,geometry.size.height/4)
+          }
         })
 
         Button(action: {
-          print("Life History Pressed")
+          isShowingHistory.toggle()
+          isShowingPoison = false
+          isShowingCommanderDMG = false
           specialDMGPresenter = (playerIndex, rotation, true)
         }, label: {
           Image(systemName: "menucard")
@@ -43,6 +72,7 @@ struct PlayerSettingsView: View {
             .font(.system(size: 500).weight(.ultraLight))
             .scaledToFit()
             .getContrastColor(backgroundColor: backgroundColor)
+            .fontWeight(isShowingHistory ? .bold : .regular)
         })
         Spacer()
       }
@@ -53,7 +83,9 @@ struct PlayerSettingsView: View {
 }
 
 struct PlayerSettingsView_Previews: PreviewProvider {
-  @State static var isShowingStuff = false
+  @State static var isShowingHistory = false
+  @State static var isShowingPoison = false
+  @State static var isShowingCommanderDMG = false
   @State static var history = History()
   @State static var specialDMG: (Int, Angle,Bool)? = nil
 
@@ -61,8 +93,9 @@ struct PlayerSettingsView_Previews: PreviewProvider {
     PlayerSettingsView(
       backgroundColor: .blue,
       rotation: .zero, playerIndex: 0, matchModel: NewMatchModel(hasCommanderDamage: true, gameMode: .fourCorners),
-      isShowingHistory: $isShowingStuff,
-      isShowingCommanderDMG: $isShowingStuff,
+      isShowingHistory: $isShowingHistory,
+      isShowingPoison: $isShowingPoison,
+      isShowingCommanderDMG: $isShowingCommanderDMG,
       history: $history, specialDMGPresenter: $specialDMG
     )
   }

@@ -13,6 +13,7 @@ struct LifeTrackerView: View {
   @ObservedObject var playerModel: PlayerModel
   @Binding var lifeDelta: Int
   @Binding var history: History
+  @Binding var isChangingColor: Bool
   @State var deltaTimer: Timer? = nil
   @State var holdTimer: Timer? = nil
   @State var isLongPressing: Bool = false
@@ -43,6 +44,9 @@ struct LifeTrackerView: View {
 
         TrackerView(trackerType: .life, backgroundColor: backgroundColor, count: $playerModel.life)
           .frame(width: geom.size.width * 0.5, height: geom.size.height)
+          .onTapGesture {
+            isChangingColor = true
+          }
 
         ButtonImageView(
           holdTimer: $holdTimer,
@@ -88,7 +92,7 @@ struct LifeTrackerView_Previews: PreviewProvider {
   @State static var history = History()
 
   static var previews: some View {
-    LifeTrackerView(playerModel: PlayerModel(index: 0, life: 40, numOfPlayers: 4), lifeDelta: $delta, history: $history)
+    LifeTrackerView(playerModel: PlayerModel(index: 0, life: 40, numOfPlayers: 4), lifeDelta: $delta, history: $history, isChangingColor: .constant(false))
   }
 }
 
