@@ -31,13 +31,24 @@ struct CommanderDamageView: View {
         }
       case .threeTPlayer:
           HStack(spacing: 0) {
-            PlayerCommanderDamageView(opponentIndex: 0, playerModel: matchModel.playerModels[playerIndex])
-              .modifier(RotatedView(angle: rotation))
-            VStack(spacing: 0) {
-              PlayerCommanderDamageView(opponentIndex: 1, playerModel: matchModel.playerModels[playerIndex])
+            if playerIndex == 0 {
+              VStack(spacing: 0) {
+                PlayerCommanderDamageView(opponentIndex: 1, playerModel: matchModel.playerModels[playerIndex])
+                  .modifier(RotatedView(angle: rotation))
+                PlayerCommanderDamageView(opponentIndex: 2, playerModel: matchModel.playerModels[playerIndex])
+                  .modifier(RotatedView(angle: rotation))
+              }
+              PlayerCommanderDamageView(opponentIndex: 0, playerModel: matchModel.playerModels[playerIndex])
                 .modifier(RotatedView(angle: rotation))
-              PlayerCommanderDamageView(opponentIndex: 2, playerModel: matchModel.playerModels[playerIndex])
+            } else {
+              PlayerCommanderDamageView(opponentIndex: 0, playerModel: matchModel.playerModels[playerIndex])
                 .modifier(RotatedView(angle: rotation))
+              VStack(spacing: 0) {
+                PlayerCommanderDamageView(opponentIndex: 1, playerModel: matchModel.playerModels[playerIndex])
+                  .modifier(RotatedView(angle: rotation))
+                PlayerCommanderDamageView(opponentIndex: 2, playerModel: matchModel.playerModels[playerIndex])
+                  .modifier(RotatedView(angle: rotation))
+              }
             }
           }
       case .threeLPlayer:

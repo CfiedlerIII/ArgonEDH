@@ -6,7 +6,7 @@
 //  Sarah loves you <3
 //
 
-import Foundation
+import SwiftUI
 
 class PlayerModel: ObservableObject, Identifiable {
   var id: String
@@ -15,8 +15,9 @@ class PlayerModel: ObservableObject, Identifiable {
   @Published var infectDMG: Int = 0
   @Published var commanderDMG: [[Int]] = []
   @Published var history: History = History()
+  @Published var backgroundColor: Color
 
-  init(id: String = UUID().uuidString, index: Int, life: Int, numOfPlayers: Int) {
+  init(id: String = UUID().uuidString, index: Int, life: Int, numOfPlayers: Int, backgroundColor: Color = .pink) {
     self.id = id
     self.index = index
     self.life = life
@@ -27,6 +28,7 @@ class PlayerModel: ObservableObject, Identifiable {
       cmdrDMG[i].append(0)
     }
     self.commanderDMG = cmdrDMG
+    self.backgroundColor = backgroundColor
   }
 
   func addCommander(playerIndex: Int, withNickname nickname: String? = nil) {
@@ -89,10 +91,11 @@ class NewMatchModel: ObservableObject {
   }
 
   class func setupMatch(gameMode: GameMode, startingLife: Int) -> [PlayerModel] {
+    let defaultColors: [Color] = [.green, .blue, .red, .yellow]
     var tempPlayerModels: [PlayerModel] = []
     // Generate all player models
     for index in 0..<gameMode.numOfPlayers() {
-      let newPlayerModel = PlayerModel(index: index, life: startingLife, numOfPlayers: gameMode.numOfPlayers())
+      let newPlayerModel = PlayerModel(index: index, life: startingLife, numOfPlayers: gameMode.numOfPlayers(), backgroundColor: defaultColors[index])
       tempPlayerModels.append(newPlayerModel)
     }
     return tempPlayerModels

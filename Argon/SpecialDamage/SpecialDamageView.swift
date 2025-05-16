@@ -15,26 +15,17 @@ struct SpecialDamageView: View {
 
   var body: some View {
     GeometryReader { geometry in
-      HStack(alignment: .center) {
-        if matchModel.hasCommanderDamage, let specialPresenter = specialDMGPresenter {
-          VStack {
-            Text("Commander Damage")
-            CommanderDamageView(
-              playerIndex: playerIndex,
-              rotation: .degrees(360) - specialPresenter.1,
-              matchModel: matchModel
-            )
-            .modifier(RotatedView(angle: specialPresenter.1))
-          }
-          Divider()
-        }
+      if let specialPresenter = specialDMGPresenter {
         VStack {
-          Text("Poison Damage")
-          SmallDamageView(playerModel: matchModel.playerModels[playerIndex], dmgCount: $matchModel.playerModels[playerIndex].infectDMG)
+          CommanderDamageView(
+            playerIndex: playerIndex,
+            rotation: .degrees(360) - specialPresenter.1,
+            matchModel: matchModel
+          )
+          .modifier(RotatedView(angle: specialPresenter.1))
         }
-        .frame(minWidth: poisonWidth(model: matchModel, geom: geometry), minHeight: geometry.size.height/3, maxHeight: geometry.size.height/2)
+        .modifier(ModalCloseWrapper(title: "Commander Damage", specialDMGPresenter: $specialDMGPresenter))
       }
-      .modifier(ModalCloseWrapper(title: "Special Damage", specialDMGPresenter: $specialDMGPresenter))
     }
     .getContrastColor(backgroundColor: .white)
   }
@@ -62,9 +53,9 @@ struct SpecialDamageView: View {
 
 struct SpecialDamageView_Previews: PreviewProvider {
   @State static var isDisplayed: Bool = false
-  @State static var specialDMGPresenter: (Int,Angle,Bool)?
+  @State static var specialDMGPresenter: (Int,Angle,Bool)? = (40,Angle(degrees: 180.0),true)
 
   static var previews: some View {
-    SpecialDamageView(matchModel: NewMatchModel(startingLife: 40, hasCommanderDamage: false, gameMode: .fourCorners), specialDMGPresenter: $specialDMGPresenter, playerIndex: 0)
+    SpecialDamageView(matchModel: NewMatchModel(startingLife: 40, hasCommanderDamage: true, gameMode: .threeTPlayer), specialDMGPresenter: $specialDMGPresenter, playerIndex: 0)
   }
 }
