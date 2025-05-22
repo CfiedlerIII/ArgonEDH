@@ -8,14 +8,15 @@
 import SwiftUI
 
 class History {
-  var deltas: [Delta] = [] {
-    didSet {
-      print("didSet delta")
-    }
-  }
+  var deltas: [Delta] = []
 
   init(deltas: [Delta] = []) {
     self.deltas = deltas
+  }
+
+  func addDelta(value: Int) {
+    let newDelta = Delta(value)
+    deltas.append(newDelta)
   }
 
   struct Delta: Identifiable {

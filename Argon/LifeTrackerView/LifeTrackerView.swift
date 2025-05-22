@@ -77,8 +77,7 @@ struct LifeTrackerView: View {
     deltaTimer?.invalidate()
     deltaTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true, block: { _ in
       if lifeDelta != 0 {
-        let newDelta = History.Delta(lifeDelta)
-        history.deltas.append(newDelta)
+        history.addDelta(value: lifeDelta)
       }
       lifeDelta = 0
     })

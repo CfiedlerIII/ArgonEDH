@@ -53,20 +53,15 @@ class PlayerModel: ObservableObject, Identifiable {
   }
 
   func adjustPoisonDMG(value: Int) {
-    print("Adjusting Poison Damage: \(value)")
     infectDMG += value
-    print("poisonDMG: \(infectDMG)")
   }
 
   func adjustCommanderDMG(value: Int, playerIndex: Int, cmdrIndex: Int) {
-    print("Dealing Commander Damage: \(value)")
     commanderDMG[playerIndex][cmdrIndex] += value
-    print("cmdrDMG: \(commanderDMG)")
     self.adjustLife(value: -value)
   }
 
   func adjustLife(value: Int) {
-    print("Adjusting Life Total: \(value)")
     self.life = self.life + value
   }
 }

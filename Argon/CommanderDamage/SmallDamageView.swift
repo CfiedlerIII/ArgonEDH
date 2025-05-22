@@ -14,6 +14,7 @@ struct SmallDamageView: View {
   var opponentIndex: Int? = nil
   @ObservedObject var playerModel: PlayerModel
   @Binding var dmgCount: Int
+  @State var lifeDelta: Int = 0
   @State var deltaTimer: Timer? = nil
   @State var holdTimer: Timer? = nil
   @State var isLongPressing: Bool = false
@@ -48,8 +49,7 @@ struct SmallDamageView: View {
                   } else {
                     if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
                       playerModel.adjustCommanderDMG(value: 1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
-                    } else {
-                      playerModel.adjustPoisonDMG(value: 1)
+                      handleDeltaCounter(1)
                     }
                   }
                 }
@@ -65,8 +65,7 @@ struct SmallDamageView: View {
                   block: { _ in
                     if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
                       playerModel.adjustCommanderDMG(value: 1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
-                    } else {
-                      playerModel.adjustPoisonDMG(value: 1)
+                      handleDeltaCounter(1)
                     }
                   }
                 )
@@ -85,8 +84,7 @@ struct SmallDamageView: View {
                   } else {
                     if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
                       playerModel.adjustCommanderDMG(value: -1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
-                    } else {
-                      playerModel.adjustPoisonDMG(value: -1)
+                      handleDeltaCounter(-1)
                     }
                   }
                 }
@@ -102,8 +100,7 @@ struct SmallDamageView: View {
                   block: { _ in
                     if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
                       playerModel.adjustCommanderDMG(value: -1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
-                    } else {
-                      playerModel.adjustPoisonDMG(value: -1)
+                      handleDeltaCounter(-1)
                     }
                   }
                 )
@@ -122,6 +119,17 @@ struct SmallDamageView: View {
           .stroke(.black, lineWidth: 3)
       )
     }
+  }
+
+  func handleDeltaCounter(_ value: Int) {
+    deltaTimer?.invalidate()
+    deltaTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true, block: { _ in
+      if lifeDelta != 0 {
+        playerModel.history.addDelta(value: lifeDelta)
+      }
+      lifeDelta = 0
+    })
+    lifeDelta = lifeDelta + value
   }
 }
 
