@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1D3273322BE97B6E00F55D87 /* ArgonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3273312BE97B6E00F55D87 /* ArgonApp.swift */; };
-		1D3273342BE97B6E00F55D87 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3273332BE97B6E00F55D87 /* ContentView.swift */; };
 		1D3273362BE97B6F00F55D87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D3273352BE97B6F00F55D87 /* Assets.xcassets */; };
 		1D3273392BE97B6F00F55D87 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D3273382BE97B6F00F55D87 /* Preview Assets.xcassets */; };
 		1D3273452BE97CB000F55D87 /* TrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3273442BE97CB000F55D87 /* TrackerView.swift */; };
@@ -44,7 +43,6 @@
 /* Begin PBXFileReference section */
 		1D32732E2BE97B6E00F55D87 /* Argon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Argon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D3273312BE97B6E00F55D87 /* ArgonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgonApp.swift; sourceTree = "<group>"; };
-		1D3273332BE97B6E00F55D87 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1D3273352BE97B6F00F55D87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D3273382BE97B6F00F55D87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1D3273442BE97CB000F55D87 /* TrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerView.swift; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 				1D3273432BE97C8A00F55D87 /* TrackerView */,
 				1D32733F2BE97BD300F55D87 /* Helpers */,
 				1D3273312BE97B6E00F55D87 /* ArgonApp.swift */,
-				1D3273332BE97B6E00F55D87 /* ContentView.swift */,
 				1D3273352BE97B6F00F55D87 /* Assets.xcassets */,
 				1D3273372BE97B6F00F55D87 /* Preview Content */,
 			);
@@ -310,7 +307,6 @@
 				1D63B3C32DCE77C10069AF97 /* GameSettingsView.swift in Sources */,
 				1D3273512BE98D8800F55D87 /* PlayerView.swift in Sources */,
 				1D32734E2BE98A2300F55D87 /* GeometryProxy+.swift in Sources */,
-				1D3273342BE97B6E00F55D87 /* ContentView.swift in Sources */,
 				1D571D662D77923B000708EF /* PlayerNumberMenuView.swift in Sources */,
 				1D3273322BE97B6E00F55D87 /* ArgonApp.swift in Sources */,
 				1DC5FCFD2BFFE98100EAB526 /* ClearBackgroundView.swift in Sources */,
@@ -465,12 +461,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Argon/Preview Content\"";
 				DEVELOPMENT_TEAM = HR2X7J3B85;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Argon/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Argon;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.card-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -498,12 +495,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Argon/Preview Content\"";
 				DEVELOPMENT_TEAM = HR2X7J3B85;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Argon/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Argon;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.card-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
