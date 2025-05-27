@@ -30,8 +30,7 @@ struct ButtonImageView: View {
           HStack {
             Spacer()
             Image(systemName: systemName)
-              .resizable()
-              .scaledToFit()
+              .imageScaleModifier()
               .getContrastColor(backgroundColor: backgroundColor)
               .modifier(FitImageToLifeTracker(geom: geom))
             Spacer()

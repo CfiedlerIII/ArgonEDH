@@ -36,9 +36,8 @@ struct TrackerView: View {
           Spacer()
           ZStack {
             trackerType.getImage()
-              .resizable()
+              .imageScaleModifier()
               .font(.system(size: 5000).weight(.ultraLight))
-              .aspectRatio(contentMode: .fit)
               .getContrastColor(backgroundColor: backgroundColor)
             Text("\(count)")
               .getContrastColor(backgroundColor: backgroundColor, reversed: true)

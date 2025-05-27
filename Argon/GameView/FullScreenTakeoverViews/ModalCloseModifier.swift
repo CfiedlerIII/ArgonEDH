@@ -36,8 +36,7 @@ struct ModalCloseModifier: ViewModifier {
               isDisplayed = false
             }, label: {
               Image(systemName: "xmark")
-                .resizable()
-                .frame(width: 28, height: 28, alignment: .center)
+                .imageSizeModifier(size: 28)
             })
             .padding()
             .tint(.black)

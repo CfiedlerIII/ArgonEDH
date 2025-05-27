@@ -111,9 +111,7 @@ struct GameView: View {
           isSettingsDisplayed = true
         }, label: {
           Image(systemName: "gearshape.circle")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 48, height: 48)
+            .imageSizeModifier(size: 48)
         })
         .foregroundStyle(.black)
         .padding(2)
