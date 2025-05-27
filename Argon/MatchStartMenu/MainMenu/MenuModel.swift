@@ -6,11 +6,11 @@
 //
 
 class MenuModel {
-  var gameMode: GameMode
+  var gameMode: GameType
   var startingLife: Int
   var hasCMDDamage: Bool
 
-  init(gameMode: GameMode, startingLife: Int, hasCMDDamage: Bool = false) {
+  init(gameMode: GameType, startingLife: Int, hasCMDDamage: Bool = false) {
     self.gameMode = gameMode
     self.startingLife = startingLife
     self.hasCMDDamage = hasCMDDamage

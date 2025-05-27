@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameSettingsView: View {
   var navigator: Navigator
-  var matchModel: NewMatchModel
+  var matchModel: GameModel
   @Binding var isDisplayed: Bool
 
   var body: some View {
@@ -35,13 +35,9 @@ struct GameSettingsView: View {
       })
       Spacer()
     }
-    .modifier(ModalCloseWrapper(title: "Game Settings", isDisplayed: $isDisplayed))
+    .modifier(ModalCloseModifier(title: "Game Settings", isDisplayed: $isDisplayed))
     .getContrastColor(backgroundColor: .white)
   }
-}
-
-#Preview {
-  GameSettingsView(navigator: Navigator(), matchModel: NewMatchModel(gameMode: .twoPlayer), isDisplayed: .constant(true))
 }
 
 struct SettingsButtonStyle: ViewModifier {
@@ -54,3 +50,9 @@ struct SettingsButtonStyle: ViewModifier {
       )
   }
 }
+
+#Preview {
+  GameSettingsView(navigator: Navigator(), matchModel: GameModel(gameMode: .twoPlayer), isDisplayed: .constant(true))
+}
+
+

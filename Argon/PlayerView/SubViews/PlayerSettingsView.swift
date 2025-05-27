@@ -12,7 +12,7 @@ struct PlayerSettingsView: View {
   var backgroundColor: Color
   var rotation: Angle
   var playerIndex: Int
-  @ObservedObject var matchModel: NewMatchModel
+  @ObservedObject var matchModel: GameModel
   @Binding var isShowingHistory: Bool
   @Binding var isShowingPoison: Bool
   @Binding var isShowingCommanderDMG: Bool
@@ -92,7 +92,7 @@ struct PlayerSettingsView_Previews: PreviewProvider {
   static var previews: some View {
     PlayerSettingsView(
       backgroundColor: .blue,
-      rotation: .zero, playerIndex: 0, matchModel: NewMatchModel(hasCommanderDamage: true, gameMode: .fourCorners),
+      rotation: .zero, playerIndex: 0, matchModel: GameModel(hasCommanderDamage: true, gameMode: .fourCorners),
       isShowingHistory: $isShowingHistory,
       isShowingPoison: $isShowingPoison,
       isShowingCommanderDMG: $isShowingCommanderDMG,

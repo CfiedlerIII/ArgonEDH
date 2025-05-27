@@ -1,5 +1,5 @@
 //
-//  ModalCloseWrapper.swift
+//  ModalCloseModifier.swift
 //  Argon
 //
 //  Created by Charles Fiedler on 5/12/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ModalCloseWrapper: ViewModifier {
+struct ModalCloseModifier: ViewModifier {
   let title: String
   @Binding var isDisplayed: Bool
   @Binding var specialDMGPresenter: (Int,Angle,Bool)?

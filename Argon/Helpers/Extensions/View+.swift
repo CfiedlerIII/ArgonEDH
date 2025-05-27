@@ -12,7 +12,6 @@ enum ImageContrastMode {
 }
 
 extension View {
-
   func getImageContrastMode(backgroundColor: Color, reversed: Bool = false) -> ImageContrastMode {
     var r, g, b, a: CGFloat
     (r, g, b, a) = (0, 0, 0, 0)
@@ -45,16 +44,4 @@ extension View {
     }
     return luminance < 0.6 ? self.foregroundColor(.black) : self.foregroundColor(.white)
   }
-}
-
-struct LimitRotationTo: ViewModifier {
-    let orientation: UIInterfaceOrientationMask
-
-    func body(content: Content) -> some View {
-        content
-        .onAppear {
-          UIDevice.current.setValue(orientation.rawValue, forKey: "orientation")
-          AppDelegate.orientationLock = orientation
-        }
-    }
 }

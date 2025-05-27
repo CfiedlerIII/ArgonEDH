@@ -7,77 +7,9 @@
 
 import SwiftUI
 
-enum GameMode: String, Codable {
-  case twoPlayer
-  case twoPlayerSameSide
-  case twoPlayerLandscape
-  case threeTPlayer
-  case threeLPlayer
-  case fourCorners
-  case fourPlus
-
-  func numOfPlayers() -> Int {
-    switch self {
-    case .twoPlayer, .twoPlayerLandscape, .twoPlayerSameSide:
-      return 2
-    case .threeTPlayer, .threeLPlayer:
-      return 3
-    case .fourCorners, .fourPlus:
-      return 4
-    }
-  }
-
-  func description() -> String {
-    switch self {
-    case .twoPlayer:
-      "Portrait: Across from each other"
-    case .twoPlayerLandscape:
-      "Landscape: Across from each other"
-    case .twoPlayerSameSide:
-      "Landscape: Next to each other"
-    case .threeTPlayer:
-      "Landscape: In a 'T' layout"
-    case .threeLPlayer:
-      "Landscape: In an 'L' layout"
-    case .fourCorners:
-      "Landscape: In the four corners"
-    case .fourPlus:
-      "Landscape: In a plus configuration"
-    }
-  }
-
-  static func getModesFor(players: Int) -> [GameMode] {
-    switch players {
-    case 2:
-      return [.twoPlayer, .twoPlayerLandscape, .twoPlayerSameSide]
-    case 3:
-      return [.threeLPlayer, .threeTPlayer]
-    default:
-      return [.fourPlus, .fourCorners]
-    }
-  }
-}
-
-struct GameViewWrapper: View {
+struct GameView: View {
   var navigator: Navigator
-  var gameMode: GameMode
-  var startingLife: Int
-  var hasCMDDMG: Bool
-
-  var body: some View {
-    GeometryReader { geom in
-      ZStack {
-        Color.black
-          .ignoresSafeArea()
-        UniversalGameView(navigator: navigator, matchModel: NewMatchModel(startingLife: startingLife, hasCommanderDamage: hasCMDDMG, gameMode: gameMode))
-      }
-    }
-  }
-}
-
-struct UniversalGameView: View {
-  var navigator: Navigator
-  @ObservedObject var matchModel: NewMatchModel
+  @ObservedObject var matchModel: GameModel
   @State var specialDMGPresenter: (Int,Angle,Bool)? = nil
   @State var isDisplayingHistory: Bool = false
   @State var isSettingsDisplayed: Bool = false
@@ -85,6 +17,8 @@ struct UniversalGameView: View {
   var body: some View {
     GeometryReader { geom in
       ZStack {
+        Color.black
+          .ignoresSafeArea()
         switch matchModel.gameMode {
         case .twoPlayer:
           VStack {
@@ -197,12 +131,12 @@ struct UniversalGameView: View {
             HistoryView(history: $matchModel.playerModels[specialPresenter.0].history, specialDMGPresenter: $specialDMGPresenter
             )
             .background(.white.opacity(0.95))
-            .modifier(RotatedView(angle: specialPresenter.1))
+            .modifier(RotatedViewModifier(angle: specialPresenter.1))
           } else {
-            SpecialDamageView(matchModel: matchModel, specialDMGPresenter: $specialDMGPresenter, playerIndex: specialPresenter.0, dismissCall: dismissSpecialDMGView
+            CommanderWrapperView(matchModel: matchModel, specialDMGPresenter: $specialDMGPresenter, playerIndex: specialPresenter.0, dismissCall: dismissSpecialDMGView
             )
             .background(.white.opacity(0.85))
-            .modifier(RotatedView(angle: specialPresenter.1))
+            .modifier(RotatedViewModifier(angle: specialPresenter.1))
           }
         }
       }
@@ -220,6 +154,6 @@ struct UniversalGameView: View {
 
 struct UniversalGameView_Previews: PreviewProvider {
   static var previews: some View {
-    UniversalGameView(navigator: Navigator(), matchModel: NewMatchModel(startingLife: 40, hasCommanderDamage: true, gameMode: .fourPlus))
+    GameView(navigator: Navigator(), matchModel: GameModel(startingLife: 40, hasCommanderDamage: true, gameMode: .fourPlus))
   }
 }

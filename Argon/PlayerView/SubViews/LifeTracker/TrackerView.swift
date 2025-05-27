@@ -57,19 +57,19 @@ struct TrackerView: View {
   }
 }
 
-struct TrackerView_Previews: PreviewProvider {
-  @State static var count = 8
-
-  static var previews: some View {
-    TrackerView(trackerType: .life, backgroundColor: .black, count: $count)
-  }
-}
-
 struct FitTextToTracker: ViewModifier {
   var geom: GeometryProxy
 
   func body(content: Content) -> some View {
     content
       .frame(width: geom.smallerDimension() * 0.65, height: geom.smallerDimension() * 0.85)
+  }
+}
+
+struct TrackerView_Previews: PreviewProvider {
+  @State static var count = 8
+
+  static var previews: some View {
+    TrackerView(trackerType: .life, backgroundColor: .black, count: $count)
   }
 }
