@@ -85,16 +85,6 @@ struct LifeTrackerView: View {
   }
 }
 
-struct LifeTrackerView_Previews: PreviewProvider {
-  @State static var count = 22
-  @State static var delta = 2
-  @State static var history = History()
-
-  static var previews: some View {
-    LifeTrackerView(playerModel: PlayerModel(index: 0, life: 40, numOfPlayers: 4), lifeDelta: $delta, history: $history, isChangingColor: .constant(false))
-  }
-}
-
 struct FitImageToLifeTracker: ViewModifier {
   var geom: GeometryProxy
 
@@ -104,52 +94,12 @@ struct FitImageToLifeTracker: ViewModifier {
   }
 }
 
-struct ButtonImageView: View {
-  @Binding var holdTimer: Timer?
-  @Binding var isLongPressing: Bool
-  var systemName: String
-  var buttonTapAction: (() -> ())?
-  var buttonHoldAction: (() -> ())?
-  var backgroundColor: Color
+struct LifeTrackerView_Previews: PreviewProvider {
+  @State static var count = 22
+  @State static var delta = 2
+  @State static var history = History()
 
-  var body: some View {
-    GeometryReader { geom in
-      Button(action: {
-        if(isLongPressing){
-          isLongPressing.toggle()
-          holdTimer?.invalidate()
-        } else {
-          buttonTapAction?()
-        }
-      }, label: {
-        VStack {
-          Spacer()
-          HStack {
-            Spacer()
-            Image(systemName: systemName)
-              .resizable()
-              .scaledToFit()
-              .getContrastColor(backgroundColor: backgroundColor)
-              .modifier(FitImageToLifeTracker(geom: geom))
-            Spacer()
-          }
-          Spacer()
-        }
-      })
-      .simultaneousGesture(
-        LongPressGesture(
-          minimumDuration: 0.2
-        ).onEnded { _ in
-          self.isLongPressing = true
-          holdTimer = Timer.scheduledTimer(
-            withTimeInterval: 0.1,
-            repeats: true,
-            block: { _ in
-              buttonHoldAction?()
-            }
-          )
-        }
-      )
-    }
+  static var previews: some View {
+    LifeTrackerView(playerModel: PlayerModel(index: 0, life: 40, numOfPlayers: 4), lifeDelta: $delta, history: $history, isChangingColor: .constant(false))
   }
 }

@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-class MenuModel {
-  var gameMode: GameMode
-  var startingLife: Int
-  var hasCMDDamage: Bool
-
-  init(gameMode: GameMode, startingLife: Int, hasCMDDamage: Bool = false) {
-    self.gameMode = gameMode
-    self.startingLife = startingLife
-    self.hasCMDDamage = hasCMDDamage
-  }
-}
-
 struct MainMenuView: View {
   @Environment(\.colorScheme) var colorScheme
   var navigator: Navigator
@@ -60,12 +48,6 @@ struct MainMenuView: View {
   }
 }
 
-struct MainMenuView_Previews: PreviewProvider {
-  static var previews: some View {
-    MainMenuView(navigator: Navigator())
-  }
-}
-
 struct MainMenuModifier: ViewModifier {
   func body(content: Content) -> some View {
     content
@@ -81,5 +63,11 @@ struct MainMenuModifier: ViewModifier {
         RoundedRectangle(cornerRadius: 20)
           .stroke(.blue, lineWidth: 3)
       )
+  }
+}
+
+struct MainMenuView_Previews: PreviewProvider {
+  static var previews: some View {
+    MainMenuView(navigator: Navigator())
   }
 }
