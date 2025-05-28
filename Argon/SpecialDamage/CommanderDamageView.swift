@@ -10,7 +10,7 @@ import SwiftUI
 struct CommanderDamageView: View {
   var playerIndex: Int
   var rotation: Angle = .zero
-  @ObservedObject var matchModel: NewMatchModel
+  @ObservedObject var matchModel: GameModel
 
   var body: some View {
     GeometryReader { geometry in
@@ -18,36 +18,36 @@ struct CommanderDamageView: View {
       case .twoPlayer:
         VStack(spacing: 0) {
           PlayerCommanderDamageView(opponentIndex: 0, playerModel: matchModel.playerModels[playerIndex])
-            .modifier(RotatedView(angle: rotation))
+            .modifier(RotatedViewModifier(angle: rotation))
           PlayerCommanderDamageView(opponentIndex: 1, playerModel: matchModel.playerModels[playerIndex])
-            .modifier(RotatedView(angle: rotation))
+            .modifier(RotatedViewModifier(angle: rotation))
         }
       case .twoPlayerLandscape, .twoPlayerSameSide:
         HStack(spacing: 0) {
           PlayerCommanderDamageView(opponentIndex: 0, playerModel: matchModel.playerModels[playerIndex])
-            .modifier(RotatedView(angle: rotation))
+            .modifier(RotatedViewModifier(angle: rotation))
           PlayerCommanderDamageView(opponentIndex: 1, playerModel: matchModel.playerModels[playerIndex])
-            .modifier(RotatedView(angle: rotation))
+            .modifier(RotatedViewModifier(angle: rotation))
         }
       case .threeTPlayer:
           HStack(spacing: 0) {
             if playerIndex == 0 {
               VStack(spacing: 0) {
                 PlayerCommanderDamageView(opponentIndex: 1, playerModel: matchModel.playerModels[playerIndex])
-                  .modifier(RotatedView(angle: rotation))
+                  .modifier(RotatedViewModifier(angle: rotation))
                 PlayerCommanderDamageView(opponentIndex: 2, playerModel: matchModel.playerModels[playerIndex])
-                  .modifier(RotatedView(angle: rotation))
+                  .modifier(RotatedViewModifier(angle: rotation))
               }
               PlayerCommanderDamageView(opponentIndex: 0, playerModel: matchModel.playerModels[playerIndex])
-                .modifier(RotatedView(angle: rotation))
+                .modifier(RotatedViewModifier(angle: rotation))
             } else {
               PlayerCommanderDamageView(opponentIndex: 0, playerModel: matchModel.playerModels[playerIndex])
-                .modifier(RotatedView(angle: rotation))
+                .modifier(RotatedViewModifier(angle: rotation))
               VStack(spacing: 0) {
                 PlayerCommanderDamageView(opponentIndex: 1, playerModel: matchModel.playerModels[playerIndex])
-                  .modifier(RotatedView(angle: rotation))
+                  .modifier(RotatedViewModifier(angle: rotation))
                 PlayerCommanderDamageView(opponentIndex: 2, playerModel: matchModel.playerModels[playerIndex])
-                  .modifier(RotatedView(angle: rotation))
+                  .modifier(RotatedViewModifier(angle: rotation))
               }
             }
           }
@@ -55,13 +55,13 @@ struct CommanderDamageView: View {
         HStack(spacing: 0) {
           VStack(spacing: 0) {
             PlayerCommanderDamageView(opponentIndex: 0, playerModel: matchModel.playerModels[playerIndex])
-              .modifier(RotatedView(angle: rotation))
+              .modifier(RotatedViewModifier(angle: rotation))
             PlayerCommanderDamageView(opponentIndex: 1, playerModel: matchModel.playerModels[playerIndex])
-              .modifier(RotatedView(angle: rotation))
+              .modifier(RotatedViewModifier(angle: rotation))
           }
           VStack(spacing: 0) {
             PlayerCommanderDamageView(opponentIndex: 2, playerModel: matchModel.playerModels[playerIndex])
-              .modifier(RotatedView(angle: rotation))
+              .modifier(RotatedViewModifier(angle: rotation))
             Color.white
               .opacity(0.0)
               .modifier(MiniDamageSizeModifier())
@@ -71,32 +71,32 @@ struct CommanderDamageView: View {
         HStack(spacing: 0) {
           VStack(spacing: 0) {
             PlayerCommanderDamageView(opponentIndex: 0, playerModel: matchModel.playerModels[playerIndex])
-              .modifier(RotatedView(angle: rotation))
+              .modifier(RotatedViewModifier(angle: rotation))
             PlayerCommanderDamageView(opponentIndex: 1, playerModel: matchModel.playerModels[playerIndex])
-              .modifier(RotatedView(angle: rotation))
+              .modifier(RotatedViewModifier(angle: rotation))
           }
           VStack(spacing: 0) {
             PlayerCommanderDamageView(opponentIndex: 2, playerModel: matchModel.playerModels[playerIndex])
-              .modifier(RotatedView(angle: rotation))
+              .modifier(RotatedViewModifier(angle: rotation))
             PlayerCommanderDamageView(opponentIndex: 3, playerModel: matchModel.playerModels[playerIndex])
-              .modifier(RotatedView(angle: rotation))
+              .modifier(RotatedViewModifier(angle: rotation))
           }
         }
       case .fourPlus:
         HStack(spacing: 0) {
           VStack(spacing: 0) {
             PlayerCommanderDamageView(opponentIndex: 0, playerModel: matchModel.playerModels[playerIndex])
-              .modifier(RotatedView(angle: rotation))
+              .modifier(RotatedViewModifier(angle: rotation))
           }
           VStack(spacing: 0) {
             PlayerCommanderDamageView(opponentIndex: 1, playerModel: matchModel.playerModels[playerIndex])
-              .modifier(RotatedView(angle: rotation))
+              .modifier(RotatedViewModifier(angle: rotation))
             PlayerCommanderDamageView(opponentIndex: 2, playerModel: matchModel.playerModels[playerIndex])
-              .modifier(RotatedView(angle: rotation))
+              .modifier(RotatedViewModifier(angle: rotation))
           }
           VStack(spacing: 0) {
             PlayerCommanderDamageView(opponentIndex: 3, playerModel: matchModel.playerModels[playerIndex])
-              .modifier(RotatedView(angle: rotation))
+              .modifier(RotatedViewModifier(angle: rotation))
           }
         }
       }
@@ -106,10 +106,10 @@ struct CommanderDamageView: View {
 }
 
 struct CommanderDamageView_Previews: PreviewProvider {
-  static var gameMode: GameMode = .threeTPlayer
+  static var gameMode: GameType = .threeTPlayer
 
   static var previews: some View {
-    CommanderDamageView(playerIndex: 0, matchModel: NewMatchModel(startingLife: 40, gameMode: gameMode))
+    CommanderDamageView(playerIndex: 0, matchModel: GameModel(startingLife: 40, gameMode: gameMode))
   }
 }
 

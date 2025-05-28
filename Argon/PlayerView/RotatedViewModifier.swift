@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RotatedView: ViewModifier {
+struct RotatedViewModifier: ViewModifier {
   let angle: Angle
 
   func body(content: Content) -> some View {

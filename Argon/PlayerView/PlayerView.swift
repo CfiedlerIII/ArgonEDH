@@ -12,7 +12,7 @@ struct PlayerView: View {
   var padding: CGFloat = 10
   var rotation: Angle
   var playerIndex: Int
-  @ObservedObject var matchModel: NewMatchModel
+  @ObservedObject var matchModel: GameModel
   @State var lifeDelta: Int = 0
   @State var isShowingHistory = false
   @State var isShowingPoison = false
@@ -20,7 +20,7 @@ struct PlayerView: View {
   @State var isChangingColor = false
   @Binding var specialDMGPresenter: (Int,Angle,Bool)?
 
-  init(rotation: Angle, matchModel: NewMatchModel, playerIndex: Int, specialDMGPresenter: Binding<(Int, Angle,Bool)?>) {
+  init(rotation: Angle, matchModel: GameModel, playerIndex: Int, specialDMGPresenter: Binding<(Int, Angle,Bool)?>) {
     self.rotation = rotation
     self.matchModel = matchModel
     self.playerIndex = playerIndex
@@ -72,7 +72,7 @@ struct PlayerView: View {
       }
       .padding(10)
     }
-    .modifier(RotatedView(angle: rotation))
+    .modifier(RotatedViewModifier(angle: rotation))
     .background($matchModel.playerModels[playerIndex].backgroundColor.wrappedValue)
     .cornerRadius(15)
   }
@@ -80,6 +80,6 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
   static var previews: some View {
-    PlayerView(rotation: .degrees(0.0), matchModel: NewMatchModel(hasCommanderDamage: true, gameMode: .fourCorners), playerIndex: 0, specialDMGPresenter: .constant(nil))
+    PlayerView(rotation: .degrees(0.0), matchModel: GameModel(hasCommanderDamage: true, gameMode: .fourCorners), playerIndex: 0, specialDMGPresenter: .constant(nil))
   }
 }

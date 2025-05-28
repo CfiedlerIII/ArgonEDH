@@ -15,7 +15,7 @@ struct GameModeMenuView: View {
   var body: some View {
     NavigationStack {
       VStack {
-        ForEach(GameMode.getModesFor(players: numOfPlayers), id: \.self) { gameMode in
+        ForEach(GameType.getModesFor(players: numOfPlayers), id: \.self) { gameMode in
           Button(action: {
             navigator.displayedView = .lifeTracker(gameMode, menuModel.startingLife, menuModel.hasCMDDamage)
           }, label: {

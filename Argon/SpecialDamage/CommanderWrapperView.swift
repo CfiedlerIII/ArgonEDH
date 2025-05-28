@@ -1,5 +1,5 @@
 //
-//  SpecialDamageView.swift
+//  CommanderWrapperView.swift
 //  Argon
 //
 //  Created by Charles Fiedler on 5/12/24.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct SpecialDamageView: View {
-  @ObservedObject var matchModel: NewMatchModel
+struct CommanderWrapperView: View {
+  @ObservedObject var matchModel: GameModel
   @Binding var specialDMGPresenter: (Int,Angle,Bool)?
   var playerIndex: Int
   var dismissCall: (() -> ())?
@@ -22,15 +22,15 @@ struct SpecialDamageView: View {
             rotation: .degrees(360) - specialPresenter.1,
             matchModel: matchModel
           )
-          .modifier(RotatedView(angle: specialPresenter.1))
+          .modifier(RotatedViewModifier(angle: specialPresenter.1))
         }
-        .modifier(ModalCloseWrapper(title: "Commander Damage", specialDMGPresenter: $specialDMGPresenter))
+        .modifier(ModalCloseModifier(title: "Commander Damage", specialDMGPresenter: $specialDMGPresenter))
       }
     }
     .getContrastColor(backgroundColor: .white)
   }
 
-  func cmdrWidth(model: NewMatchModel, geom: GeometryProxy) -> CGFloat {
+  func cmdrWidth(model: GameModel, geom: GeometryProxy) -> CGFloat {
     if model.playerModels.count == 2 {
       return geom.size.width * 0.45
     } else {
@@ -38,7 +38,7 @@ struct SpecialDamageView: View {
     }
   }
 
-  func poisonWidth(model: NewMatchModel, geom: GeometryProxy) -> CGFloat {
+  func poisonWidth(model: GameModel, geom: GeometryProxy) -> CGFloat {
     if matchModel.hasCommanderDamage {
       if model.playerModels.count == 2 {
         return geom.size.width * 0.45
@@ -56,6 +56,6 @@ struct SpecialDamageView_Previews: PreviewProvider {
   @State static var specialDMGPresenter: (Int,Angle,Bool)? = (40,Angle(degrees: 180.0),true)
 
   static var previews: some View {
-    SpecialDamageView(matchModel: NewMatchModel(startingLife: 40, hasCommanderDamage: true, gameMode: .threeTPlayer), specialDMGPresenter: $specialDMGPresenter, playerIndex: 0)
+    CommanderWrapperView(matchModel: GameModel(startingLife: 40, hasCommanderDamage: true, gameMode: .threeTPlayer), specialDMGPresenter: $specialDMGPresenter, playerIndex: 0)
   }
 }

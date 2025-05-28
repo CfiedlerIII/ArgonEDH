@@ -1,9 +1,8 @@
 //
-//  CommanderModels.swift
+//  PlayerModel.swift
 //  Argon
 //
-//  Created by Charles Fiedler on 5/22/24.
-//  Sarah loves you <3
+//  Created by Charles Fiedler on 5/27/25.
 //
 
 import SwiftUI
@@ -63,40 +62,5 @@ class PlayerModel: ObservableObject, Identifiable {
 
   func adjustLife(value: Int) {
     self.life = self.life + value
-  }
-}
-
-class NewMatchModel: ObservableObject {
-  @Published var playerModels: [PlayerModel]
-  var gameMode: GameMode
-  var startingLife: Int = 20
-  var hasCommanderDamage: Bool
-
-  init(playerModels: [PlayerModel], hasCommanderDamage: Bool, gameMode: GameMode) {
-    self.playerModels = playerModels
-    self.hasCommanderDamage = hasCommanderDamage
-    self.gameMode = gameMode
-  }
-
-  init(startingLife: Int = 40, hasCommanderDamage: Bool = true, gameMode: GameMode) {
-    self.gameMode = gameMode
-    self.startingLife = startingLife
-    self.hasCommanderDamage = hasCommanderDamage
-    self.playerModels = NewMatchModel.setupMatch(gameMode: gameMode, startingLife: startingLife)
-  }
-
-  class func setupMatch(gameMode: GameMode, startingLife: Int) -> [PlayerModel] {
-    let defaultColors: [Color] = [.green, .blue, .red, .yellow]
-    var tempPlayerModels: [PlayerModel] = []
-    // Generate all player models
-    for index in 0..<gameMode.numOfPlayers() {
-      let newPlayerModel = PlayerModel(index: index, life: startingLife, numOfPlayers: gameMode.numOfPlayers(), backgroundColor: defaultColors[index])
-      tempPlayerModels.append(newPlayerModel)
-    }
-    return tempPlayerModels
-  }
-
-  func resetMatch() {
-    self.playerModels = NewMatchModel.setupMatch(gameMode: gameMode, startingLife: startingLife)
   }
 }

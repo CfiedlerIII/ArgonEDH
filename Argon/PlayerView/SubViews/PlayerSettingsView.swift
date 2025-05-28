@@ -12,7 +12,7 @@ struct PlayerSettingsView: View {
   var backgroundColor: Color
   var rotation: Angle
   var playerIndex: Int
-  @ObservedObject var matchModel: NewMatchModel
+  @ObservedObject var matchModel: GameModel
   @Binding var isShowingHistory: Bool
   @Binding var isShowingPoison: Bool
   @Binding var isShowingCommanderDMG: Bool
@@ -31,9 +31,8 @@ struct PlayerSettingsView: View {
             specialDMGPresenter = (playerIndex, rotation, false)
           }, label: {
             Image(systemName: "checkerboard.shield")
-              .resizable()
+              .imageScaleModifier()
               .font(.system(size: 500).weight(.ultraLight))
-              .scaledToFit()
               .getContrastColor(backgroundColor: backgroundColor)
               .fontWeight(isShowingCommanderDMG ? .bold : .regular)
           })
@@ -46,15 +45,13 @@ struct PlayerSettingsView: View {
         }, label: {
           ZStack {
             Image(systemName: "drop")
-              .resizable()
+              .imageScaleModifier()
               .font(.system(size: 500).weight(.ultraLight))
-              .scaledToFit()
               .getContrastColor(backgroundColor: backgroundColor)
               .fontWeight(isShowingPoison ? .bold : .regular)
             Image(getImageContrastMode(backgroundColor: backgroundColor) == .light ? "skull.light.fill" : "skull.dark.fill")
-              .resizable()
+              .imageScaleModifier()
               .font(.system(size: 500).weight(.medium))
-              .scaledToFit()
               .getContrastColor(backgroundColor: backgroundColor)
               .frame(width: geometry.size.height/3)
               .padding(.top,geometry.size.height/4)
@@ -68,9 +65,8 @@ struct PlayerSettingsView: View {
           specialDMGPresenter = (playerIndex, rotation, true)
         }, label: {
           Image(systemName: "menucard")
-            .resizable()
+            .imageScaleModifier()
             .font(.system(size: 500).weight(.ultraLight))
-            .scaledToFit()
             .getContrastColor(backgroundColor: backgroundColor)
             .fontWeight(isShowingHistory ? .bold : .regular)
         })
@@ -92,7 +88,7 @@ struct PlayerSettingsView_Previews: PreviewProvider {
   static var previews: some View {
     PlayerSettingsView(
       backgroundColor: .blue,
-      rotation: .zero, playerIndex: 0, matchModel: NewMatchModel(hasCommanderDamage: true, gameMode: .fourCorners),
+      rotation: .zero, playerIndex: 0, matchModel: GameModel(hasCommanderDamage: true, gameMode: .fourCorners),
       isShowingHistory: $isShowingHistory,
       isShowingPoison: $isShowingPoison,
       isShowingCommanderDMG: $isShowingCommanderDMG,
