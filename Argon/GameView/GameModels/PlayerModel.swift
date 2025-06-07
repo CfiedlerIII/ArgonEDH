@@ -7,12 +7,32 @@
 
 import SwiftUI
 
+protocol DamageModelable {
+  var damage: Int { get set }
+}
+
+struct CmdrDamageModel: DamageModelable {
+  var damage: Int
+  
+  init(damage: Int = 0) {
+    self.damage = damage
+  }
+}
+
+struct InfectDamageModel: DamageModelable {
+  var damage: Int
+
+  init(damage: Int = 0) {
+    self.damage = damage
+  }
+}
+
 class PlayerModel: ObservableObject, Identifiable {
   var id: String
   var index: Int
   @Published var life: Int = 20
-  @Published var infectDMG: Int = 0
-  @Published var commanderDMG: [[Int]] = []
+  @Published var infectDMG = InfectDamageModel()
+  @Published var commanderDMG: [[CmdrDamageModel]] = []
   @Published var history: History = History()
   @Published var backgroundColor: Color
 
@@ -20,11 +40,10 @@ class PlayerModel: ObservableObject, Identifiable {
     self.id = id
     self.index = index
     self.life = life
-    self.infectDMG = 0
-    var cmdrDMG: [[Int]] = []
+    var cmdrDMG: [[CmdrDamageModel]] = []
     for i in 0..<numOfPlayers {
       cmdrDMG.append([])
-      cmdrDMG[i].append(0)
+      cmdrDMG[i].append(CmdrDamageModel())
     }
     self.commanderDMG = cmdrDMG
     self.backgroundColor = backgroundColor
@@ -33,7 +52,7 @@ class PlayerModel: ObservableObject, Identifiable {
   func addCommander(playerIndex: Int, withNickname nickname: String? = nil) {
     if commanderDMG[playerIndex].count < 2 {
       print("Adding new commander!")
-      commanderDMG[playerIndex].append(0)
+      commanderDMG[playerIndex].append(CmdrDamageModel())
       print("New array: \(commanderDMG)")
     } else {
       print("Cannot add a third commander.")
@@ -52,11 +71,11 @@ class PlayerModel: ObservableObject, Identifiable {
   }
 
   func adjustPoisonDMG(value: Int) {
-    infectDMG += value
+    infectDMG.damage += value
   }
 
   func adjustCommanderDMG(value: Int, playerIndex: Int, cmdrIndex: Int) {
-    commanderDMG[playerIndex][cmdrIndex] += value
+    commanderDMG[playerIndex][cmdrIndex].damage += value
     self.adjustLife(value: -value)
   }
 

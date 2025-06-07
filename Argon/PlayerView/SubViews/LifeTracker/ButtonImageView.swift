@@ -38,20 +38,15 @@ struct ButtonImageView: View {
           Spacer()
         }
       })
-      .simultaneousGesture(
-        LongPressGesture(
-          minimumDuration: 0.2
-        ).onEnded { _ in
-          self.isLongPressing = true
-          holdTimer = Timer.scheduledTimer(
-            withTimeInterval: 0.1,
-            repeats: true,
-            block: { _ in
-              buttonHoldAction?()
-            }
-          )
-        }
-      )
+      .modifier(LongPressViewModifier(isLongPressing: $isLongPressing, longPressAction: {
+        holdTimer = Timer.scheduledTimer(
+          withTimeInterval: 0.1,
+          repeats: true,
+          block: { _ in
+            buttonHoldAction?()
+          }
+        )
+      }))
     }
   }
 }

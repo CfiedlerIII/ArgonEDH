@@ -13,7 +13,7 @@ struct CommanderDamageView: View {
   @ObservedObject var matchModel: GameModel
 
   var body: some View {
-    GeometryReader { geometry in
+    GeometryReader { geom in
       switch matchModel.gameMode {
       case .twoPlayer:
         VStack(spacing: 0) {
@@ -34,19 +34,25 @@ struct CommanderDamageView: View {
             if playerIndex == 0 {
               VStack(spacing: 0) {
                 PlayerCommanderDamageView(opponentIndex: 1, playerModel: matchModel.playerModels[playerIndex])
+                  .frame(width: geom.size.height * 0.5, height: geom.size.width * 0.5)
                   .modifier(RotatedViewModifier(angle: rotation))
                 PlayerCommanderDamageView(opponentIndex: 2, playerModel: matchModel.playerModels[playerIndex])
+                  .frame(width: geom.size.height * 0.5, height: geom.size.width * 0.5)
                   .modifier(RotatedViewModifier(angle: rotation))
               }
               PlayerCommanderDamageView(opponentIndex: 0, playerModel: matchModel.playerModels[playerIndex])
+                .frame(width: geom.size.height * 0.5, height: geom.size.width * 0.5)
                 .modifier(RotatedViewModifier(angle: rotation))
             } else {
               PlayerCommanderDamageView(opponentIndex: 0, playerModel: matchModel.playerModels[playerIndex])
+                .frame(width: geom.size.width * 0.5, height: geom.size.height * 0.5)
                 .modifier(RotatedViewModifier(angle: rotation))
               VStack(spacing: 0) {
                 PlayerCommanderDamageView(opponentIndex: 1, playerModel: matchModel.playerModels[playerIndex])
+                  .frame(width: geom.size.width * 0.5, height: geom.size.height * 0.5)
                   .modifier(RotatedViewModifier(angle: rotation))
                 PlayerCommanderDamageView(opponentIndex: 2, playerModel: matchModel.playerModels[playerIndex])
+                  .frame(width: geom.size.width * 0.5, height: geom.size.height * 0.5)
                   .modifier(RotatedViewModifier(angle: rotation))
               }
             }
@@ -109,7 +115,7 @@ struct CommanderDamageView_Previews: PreviewProvider {
   static var gameMode: GameType = .threeTPlayer
 
   static var previews: some View {
-    CommanderDamageView(playerIndex: 0, matchModel: GameModel(startingLife: 40, gameMode: gameMode))
+    CommanderDamageView(playerIndex: 0, rotation: .init(degrees: 90.0), matchModel: GameModel(startingLife: 40, gameMode: gameMode))
   }
 }
 

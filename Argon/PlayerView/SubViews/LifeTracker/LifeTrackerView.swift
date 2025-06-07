@@ -14,6 +14,7 @@ struct LifeTrackerView: View {
   @Binding var lifeDelta: Int
   @Binding var history: History
   @Binding var isChangingColor: Bool
+  @Binding var isSettingPartners: Bool
   @State var deltaTimer: Timer? = nil
   @State var holdTimer: Timer? = nil
   @State var isLongPressing: Bool = false
@@ -47,6 +48,9 @@ struct LifeTrackerView: View {
           .onTapGesture {
             isChangingColor = true
           }
+          .modifier(LongPressViewModifier(isLongPressing: $isLongPressing, longPressAction: {
+            self.isSettingPartners = true
+          }))
 
         ButtonImageView(
           holdTimer: $holdTimer,
@@ -100,6 +104,6 @@ struct LifeTrackerView_Previews: PreviewProvider {
   @State static var history = History()
 
   static var previews: some View {
-    LifeTrackerView(playerModel: PlayerModel(index: 0, life: 40, numOfPlayers: 4), lifeDelta: $delta, history: $history, isChangingColor: .constant(false))
+    LifeTrackerView(playerModel: PlayerModel(index: 0, life: 40, numOfPlayers: 4), lifeDelta: $delta, history: $history, isChangingColor: .constant(false), isSettingPartners: .constant(false))
   }
 }

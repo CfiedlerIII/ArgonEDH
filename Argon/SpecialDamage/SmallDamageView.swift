@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct SmallDamageView: View {
+struct SmallDamageView<T: DamageModelable> : View {
 
   var backgroundColor: Color = .white
   var cmdrIndex: Int? = nil
   var opponentIndex: Int? = nil
   @ObservedObject var playerModel: PlayerModel
-  @Binding var dmgCount: Int
+  @Binding var dmgCount: T
   @State var lifeDelta: Int = 0
   @State var deltaTimer: Timer? = nil
   @State var holdTimer: Timer? = nil
@@ -29,7 +29,7 @@ struct SmallDamageView: View {
             .opacity(0.1)
         }
 
-        Text("\(dmgCount)")
+        Text("\(dmgCount.damage)")
           .lineLimit(1)
           .font(.system(size: 500))
           .minimumScaleFactor(0.01)
@@ -54,23 +54,18 @@ struct SmallDamageView: View {
                   }
                 }
             )
-            .simultaneousGesture(
-              LongPressGesture(
-                minimumDuration: 0.2
-              ).onEnded { _ in
-                self.isLongPressing = true
-                holdTimer = Timer.scheduledTimer(
-                  withTimeInterval: 0.1,
-                  repeats: true,
-                  block: { _ in
-                    if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
-                      playerModel.adjustCommanderDMG(value: 1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
-                      handleDeltaCounter(1)
-                    }
+            .modifier(LongPressViewModifier(isLongPressing: $isLongPressing, longPressAction: {
+              holdTimer = Timer.scheduledTimer(
+                withTimeInterval: 0.1,
+                repeats: true,
+                block: { _ in
+                  if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
+                    playerModel.adjustCommanderDMG(value: 1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
+                    handleDeltaCounter(1)
                   }
-                )
-              }
-            )
+                }
+              )
+            }))
 
           Rectangle()
             .fill(.clear)
@@ -89,23 +84,18 @@ struct SmallDamageView: View {
                   }
                 }
             )
-            .simultaneousGesture(
-              LongPressGesture(
-                minimumDuration: 0.2
-              ).onEnded { _ in
-                self.isLongPressing = true
-                holdTimer = Timer.scheduledTimer(
-                  withTimeInterval: 0.1,
-                  repeats: true,
-                  block: { _ in
-                    if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
-                      playerModel.adjustCommanderDMG(value: -1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
-                      handleDeltaCounter(-1)
-                    }
+            .modifier(LongPressViewModifier(isLongPressing: $isLongPressing, longPressAction: {
+              holdTimer = Timer.scheduledTimer(
+                withTimeInterval: 0.1,
+                repeats: true,
+                block: { _ in
+                  if let cmdrIndex = cmdrIndex, let opponentIndex = opponentIndex {
+                    playerModel.adjustCommanderDMG(value: -1, playerIndex: opponentIndex, cmdrIndex: cmdrIndex)
+                    handleDeltaCounter(-1)
                   }
-                )
-              }
-            )
+                }
+              )
+            }))
         }
       }
       .background(backgroundColor)

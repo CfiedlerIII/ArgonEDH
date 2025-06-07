@@ -20,7 +20,6 @@
 		1D32735A2BEC8E0000F55D87 /* RotatedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3273592BEC8E0000F55D87 /* RotatedViewModifier.swift */; };
 		1D32735D2BEE804F00F55D87 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D32735C2BEE804F00F55D87 /* MainMenuView.swift */; };
 		1D32735F2BEEB68E00F55D87 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D32735E2BEEB68E00F55D87 /* Navigator.swift */; };
-		1D571D622D778E89000708EF /* ButtonLongPressModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D571D612D778E89000708EF /* ButtonLongPressModifier.swift */; };
 		1D571D642D778EAC000708EF /* ImageModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D571D632D778EAC000708EF /* ImageModifier.swift */; };
 		1D571D662D77923B000708EF /* PlayerNumberMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D571D652D77923B000708EF /* PlayerNumberMenuView.swift */; };
 		1D571D682D7796C8000708EF /* GameModeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D571D672D7796C8000708EF /* GameModeMenuView.swift */; };
@@ -37,6 +36,7 @@
 		1DCF77CB2DE64B71004C7E81 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF77CA2DE64B71004C7E81 /* GameModel.swift */; };
 		1DCF77CF2DE65CE7004C7E81 /* ButtonImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF77CE2DE65CE7004C7E81 /* ButtonImageView.swift */; };
 		1DCF77D12DE65D48004C7E81 /* LimitRotationTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF77D02DE65D48004C7E81 /* LimitRotationTo.swift */; };
+		1DCF77D32DE6A4D1004C7E81 /* LongPressViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF77D22DE6A4D1004C7E81 /* LongPressViewModifier.swift */; };
 		1DDF30FE2C9A031200BD40C7 /* SmallDamageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDF30FD2C9A031200BD40C7 /* SmallDamageView.swift */; };
 		1DEC3E172C9A0CBC00BD7AC3 /* PlayerCommanderDamageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEC3E162C9A0CBC00BD7AC3 /* PlayerCommanderDamageView.swift */; };
 /* End PBXBuildFile section */
@@ -57,7 +57,6 @@
 		1D32735C2BEE804F00F55D87 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		1D32735E2BEEB68E00F55D87 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		1D3273672BEEBE7800F55D87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		1D571D612D778E89000708EF /* ButtonLongPressModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLongPressModifier.swift; sourceTree = "<group>"; };
 		1D571D632D778EAC000708EF /* ImageModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModifier.swift; sourceTree = "<group>"; };
 		1D571D652D77923B000708EF /* PlayerNumberMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNumberMenuView.swift; sourceTree = "<group>"; };
 		1D571D672D7796C8000708EF /* GameModeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeMenuView.swift; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		1DCF77CA2DE64B71004C7E81 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		1DCF77CE2DE65CE7004C7E81 /* ButtonImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonImageView.swift; sourceTree = "<group>"; };
 		1DCF77D02DE65D48004C7E81 /* LimitRotationTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitRotationTo.swift; sourceTree = "<group>"; };
+		1DCF77D22DE6A4D1004C7E81 /* LongPressViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPressViewModifier.swift; sourceTree = "<group>"; };
 		1DDF30FD2C9A031200BD40C7 /* SmallDamageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallDamageView.swift; sourceTree = "<group>"; };
 		1DEC3E162C9A0CBC00BD7AC3 /* PlayerCommanderDamageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCommanderDamageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				1DCF77D02DE65D48004C7E81 /* LimitRotationTo.swift */,
+				1DCF77D22DE6A4D1004C7E81 /* LongPressViewModifier.swift */,
 				1D3273402BE97BDA00F55D87 /* Extensions */,
 			);
 			path = Helpers;
@@ -143,7 +144,6 @@
 			children = (
 				1D3273482BE97F9200F55D87 /* View+.swift */,
 				1D32734D2BE98A2300F55D87 /* GeometryProxy+.swift */,
-				1D571D612D778E89000708EF /* ButtonLongPressModifier.swift */,
 				1D571D632D778EAC000708EF /* ImageModifier.swift */,
 			);
 			path = Extensions;
@@ -336,8 +336,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DCF77C92DE64B59004C7E81 /* PlayerModel.swift in Sources */,
-				1D571D622D778E89000708EF /* ButtonLongPressModifier.swift in Sources */,
 				1D8E4FC12DD7E6E200ADD955 /* PlayerColorView.swift in Sources */,
+				1DCF77D32DE6A4D1004C7E81 /* LongPressViewModifier.swift in Sources */,
 				1DEC3E172C9A0CBC00BD7AC3 /* PlayerCommanderDamageView.swift in Sources */,
 				1DCF77CB2DE64B71004C7E81 /* GameModel.swift in Sources */,
 				1D63B3C32DCE77C10069AF97 /* GameSettingsView.swift in Sources */,
