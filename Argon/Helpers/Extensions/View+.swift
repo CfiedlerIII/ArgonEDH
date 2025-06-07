@@ -40,8 +40,8 @@ extension View {
     UIColor(backgroundColor).getRed(&r, green: &g, blue: &b, alpha: &a)
     let luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
     if reversed {
-      return luminance < 0.6 ? self.foregroundColor(.white) : self.foregroundColor(.black)
+      return luminance < 0.6 ? self.background(.white) : self.background(.black)
     }
-    return luminance < 0.6 ? self.foregroundColor(.black) : self.foregroundColor(.white)
+    return luminance < 0.6 ? self.background(.black) : self.background(.white)
   }
 }

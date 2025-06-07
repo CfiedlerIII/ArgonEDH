@@ -152,6 +152,6 @@ struct GameView: View {
 
 struct UniversalGameView_Previews: PreviewProvider {
   static var previews: some View {
-    GameView(navigator: Navigator(), matchModel: GameModel(startingLife: 40, hasCommanderDamage: true, gameMode: .fourPlus))
+    GameView(navigator: Navigator(), matchModel: GameModel(startingLife: 40, hasCommanderDamage: true, gameMode: .threeTPlayer))
   }
 }
