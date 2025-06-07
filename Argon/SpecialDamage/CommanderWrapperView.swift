@@ -56,6 +56,6 @@ struct SpecialDamageView_Previews: PreviewProvider {
   @State static var specialDMGPresenter: (Int,Angle,Bool)? = (40,Angle(degrees: 180.0),true)
 
   static var previews: some View {
-    CommanderWrapperView(matchModel: GameModel(startingLife: 40, hasCommanderDamage: true, gameMode: .threeTPlayer), specialDMGPresenter: $specialDMGPresenter, playerIndex: 0)
+    CommanderWrapperView(matchModel: GameModel(startingLife: 40, hasCommanderDamage: true, gameMode: .threeTPlayer), specialDMGPresenter: $specialDMGPresenter, playerIndex: 2)
   }
 }
